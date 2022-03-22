@@ -9,7 +9,7 @@ export default class ListingsDAO {
       return
     }
     try {
-      listings = await conn.db(process.env.RESTREVIEWS_NS).collection("listingsAndReviews")
+      listings = await conn.db(process.env.LISTINGS_NS).collection("listingsAndReviews")
     } catch (e) {
       console.error(
         `Unable to establish a collection handle in listingsDAO: ${e}`,

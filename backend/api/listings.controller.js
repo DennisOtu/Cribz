@@ -6,7 +6,7 @@ export default class ListingsController {
     const page = req.query.page ? parseInt(req.query.page, 10) : 0
     const display  = await ListingsDAO.getAll(listingsPerPage, page)
     let output = {
-      listings : display,
+      list : display,
       listingsPerPage : listingsPerPage,
       page : page + 1
     }
