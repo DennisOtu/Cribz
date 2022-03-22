@@ -6,12 +6,12 @@ const Navbar = () => {
   return (
       <nav className="navbar navbar-expand navbar-dark bg-dark">
 
-        <Link to="/" className="px-5 navbar-brand">
-          CRIBZ
+        <Link to="/" className="px-5 nav-link">
+          Home
         </Link>
 
         <Link to="listings" className="nav-link">
-          Properties
+          All Cribs
         </Link>
 
       </nav>
