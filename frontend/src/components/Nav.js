@@ -18,6 +18,11 @@ const Navbar = () => {
           Location
         </Link>
 
+        <Link to="listings/bedrooms" className="mx-4 nav-link">
+          Bedrooms
+        </Link>
+
+
       </nav>
 
   )
