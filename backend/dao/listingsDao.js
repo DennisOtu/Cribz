@@ -24,9 +24,9 @@ export default class ListingsDAO {
       console.log('data retrieved')
       const cursor = allListings.limit(listingsPerPage).skip(listingsPerPage * page)
 
-      const display = await cursor.toArray()
-      console.log(`${display.length} items per page`)
-      return { display, listingsPerPage, page }  
+      const list = await cursor.toArray()
+      console.log(`${list.length} items per page`)
+      return list  
     } catch (e) {
       console.error(`Unable to get listings, ${e}`);
     }
@@ -56,9 +56,9 @@ export default class ListingsDAO {
           console.log('data retrieved')
           const cursor = allListings.limit(listingsPerPage).skip(listingsPerPage * page)
     
-          const display = await cursor.toArray()
-          console.log(`${display.length} items per page`)
-          return { display, listingsPerPage, page }  
+          const list = await cursor.toArray()
+          console.log(`${list.length} items per page`)
+          return list  
         } catch (e) {
           console.error(`Unable to get listings, ${e}`);
         }
@@ -79,9 +79,9 @@ export default class ListingsDAO {
           console.log('data retrieved')
           const cursor = allListings.limit(listingsPerPage).skip(listingsPerPage * page)
     
-          const display = await cursor.toArray()
-          console.log(`${display.length} items per page`)
-          return { display, listingsPerPage, page }  
+          const list = await cursor.toArray()
+          console.log(`${list.length} items per page`)
+          return list  
         } catch (e) {
           console.error(`Unable to get listings, ${e}`);
         }

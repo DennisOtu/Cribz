@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import PropertyList from "./components/propertyListComponent"
 import HomePage from "./components/homeComponent"
 import Navbar from "./components/Nav"
+import LocationSearch from './components/locationSearchComponent'
 
 class App extends Component {
     render() {
@@ -12,8 +13,10 @@ class App extends Component {
 	    <Navbar/>
 
 	    <Routes>
+	    
 	    <Route path='/' element={<HomePage/>}/>
 	    <Route path='listings' element={<PropertyList/>}/>
+	    <Route path='listings/location' element={<LocationSearch/>}/>
 
 	    </Routes>
 	    

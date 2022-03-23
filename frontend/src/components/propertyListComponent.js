@@ -7,8 +7,8 @@ const PropertyList = () => {
     useEffect(()=>{
   	axios.get("http://localhost:8000/api/v1/listings")
   	.then((res) => {
-  		setCribs(res.data.list.display)
-  		console.log(res.data.list.display)
+  		setCribs(res.data)
+  		console.log(res.data)
 
   	})
     .then(console.log('use effect ran'))
