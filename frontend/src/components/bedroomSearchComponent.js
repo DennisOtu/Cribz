@@ -5,9 +5,8 @@ const BedroomSearch = () => {
 	const [bedrooms, setBedrooms] = useState('')
 	const [cribs, setCribs] = useState(null)
 
-
-    const handleInputChange = event => {
-        setBedrooms(event.target.value);
+    const handleInputChange = e => {
+        setBedrooms(e.target.value);
     };
 
     const getBedroomCribs = ()=>{
@@ -19,11 +18,16 @@ const BedroomSearch = () => {
 
     return (
       <div>
-        <div className="form-group">
-          <label htmlFor="description">number of bedrooms</label>
-          <input value={bedrooms} className="form-field mx-2" placeholder="enter number" onChange={handleInputChange}
-            name="bedrooms"/>
-        </div>
+      <div>
+      number of bedrooms
+        <select className='mx-2' value={bedrooms} onChange={handleInputChange}>
+          <option value=''></option>
+          <option value='1'> 1 </option>
+          <option value='2'> 2 </option>
+          <option value='3'> 3 </option>
+          <option value='4'> 4 </option>
+        </select>
+      </div>
         <button onClick={getBedroomCribs} className="btn btn-success">
           Submit
         </button>
