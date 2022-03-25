@@ -32,11 +32,10 @@ export default class ListingsDAO {
     }
   }
 
-  static async getLocation(location) {
+  static async getLocation(location, page) {
     if (location) {
       console.log(`query.location : ${location} (dao)`)
       const listingsPerPage = 20
-      const page = 0
       const pipeline = [
         {
           $search: {
@@ -67,12 +66,10 @@ export default class ListingsDAO {
     }
   }
 
-  static async getBeds(beds) {
+  static async getBeds(beds,page) {
     if (beds) {
       console.log(`query.beds : ${beds} (dao)`)
       const listingsPerPage = 20
-      const page = 0
-
         try {
           const allListings = listings.find({ 'bedrooms': beds })
 
