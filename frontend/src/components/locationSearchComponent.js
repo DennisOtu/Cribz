@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const LocationSearch = () => {
 	const [location, setLocation] = useState('')
-	const [keyWord, setKeyWord] = useState('')
+	const [place, setPlace] = useState('')
 
 	const [cribs, setCribs] = useState(null)
 	const [page, setPage] = useState(0)
@@ -20,23 +20,23 @@ const LocationSearch = () => {
     	setPage(page+1)
     }
 
-    const previousPage = () => {
-    	setPage(page-1)
-    }
+      const previousPage = () => {
+        setPage(page-1)
+      }
 
-    const handleInputChange = event => {
-        setKeyWord(event.target.value);
+    const handleInputChange = (e) => {
+      setPlace(e.target.value);
     };
 
     const getLocationCribs = ()=>{
-    	setLocation(keyWord)
+    	setLocation(place)
     }
 
     return (
       <div>
         <div className="form-group">
           <label htmlFor="description">Location</label>
-          <input value={keyWord} className="form-field mx-2" placeholder="enter location" onChange={handleInputChange}
+          <input value={place} className="form-field mx-2" placeholder="enter location" onChange={handleInputChange}
             name="location"/>
         </div>
         <button onClick={getLocationCribs} className="btn btn-success">

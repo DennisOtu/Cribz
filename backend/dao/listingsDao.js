@@ -36,21 +36,22 @@ export default class ListingsDAO {
     if (location) {
       console.log(`query.location : ${location} (dao)`)
       const listingsPerPage = 20
-      const pipeline = [
-        {
-          $search: {
-            index: 'location',
-            text: {
-              query: location,
-              path: {
-                'wildcard': '*'
-              }
-            }
-          }
-        }
-      ]
         try {
-          const allListings = listings.aggregate(pipeline)
+          const allListings = listings.aggregate(
+            [
+              {
+                $search: {
+                  index: 'location',
+                  text: {
+                    query: location,
+                    path: {
+                      'wildcard': '*'
+                    }
+                  }
+                }
+              }
+            ]
+          )
 
           console.log('data retrieved')
           const cursor = allListings.limit(listingsPerPage).skip(listingsPerPage * page)
@@ -87,5 +88,40 @@ export default class ListingsDAO {
     }
   }
 
+  static async compound(location, beds, page) {
+    if (location && beds) {
+      console.log(`query.location: ${location}, query.beds : ${beds} (dao)`)
+      const listingsPerPage = 20
+      try {
+        const allListings = listings.aggregate(
+          [
+            {
+              $search: {
+                index: 'location',
+                text: {
+                  query: location,
+                  path: {
+                    'wildcard': '*'
+                  }
+                }
+              }
+            },
+            { $match: { "bedrooms": beds } }
+          ]
+        )
+
+        console.log('data retrieved')
+        const cursor = allListings.limit(listingsPerPage).skip(listingsPerPage * page)
+        
+        const list = await cursor.toArray()
+        console.log(`${list.length} items per page`)
+        return list
+      } catch (e) {
+        console.error(`Unable to get listings, ${e}`);
+      }
+    } else {
+      console.log('no query entered')
+    }
+  }
 }
 

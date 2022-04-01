@@ -37,6 +37,20 @@ export default class ListingsController {
 
   }
 
+  static async apiCompound(req, res, next) {
+    if (req.query.location && req.query.bedrooms) {
+      const location = req.query.location
+      const beds = parseInt(req.query.bedrooms)
+      const page = req.query.page ? parseInt(req.query.page, 10) : 0
 
+      console.log(`query.location: ${location}, query.beds: ${beds} (controller)`)
+      const list = await ListingsDAO.compound(location, beds, page)
+      res.json(list)
+    } else {
+      console.log('input field empty')
+      return
+    }
+
+  }
 }
 

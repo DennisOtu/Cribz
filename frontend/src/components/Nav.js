@@ -22,7 +22,9 @@ const Navbar = () => {
           Bedrooms
         </Link>
 
-
+        <Link to="listings/compound" className="mx-4 nav-link">
+          Compound Search
+        </Link>
       </nav>
 
   )
