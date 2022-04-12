@@ -1,9 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
 import listings from './api/listings.route.js'
-
-dotenv.config()
 
 const app = express()
 
@@ -11,7 +8,6 @@ app.use(cors())
 app.use(express.json())
 app.use('/api/v1/listings', listings)
 app.use("*", (req, res) => res.status(404).json({ error: "page not found" }))
-
 
 export default app
 

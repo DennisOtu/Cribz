@@ -7,10 +7,8 @@ const LocationSearch = () => {
 	const [place, setPlace] = useState('')
 
 	const [cribs, setCribs] = useState(null)
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
   
-
-    let currentPage = page+1
 
     useEffect(()=>{
     	axios.get(`http://localhost:8000/api/v1/listings/location?location=${location}&page=${page}`)
@@ -20,11 +18,11 @@ const LocationSearch = () => {
     },[location, page])
 
     const nextPage = () => {
-    	setPage(page+1)
+      setPage(page =>  page + 1)
     }
 
       const previousPage = () => {
-        setPage(page-1)
+        setPage(page => page-1)
       }
 
     const handleInputChange = (e) => {
@@ -39,7 +37,7 @@ const LocationSearch = () => {
       <div>
         <div className="form-group">
           <label htmlFor="description">Location</label>
-          <input value={place} className="form-field mx-2" placeholder="enter location" onChange={handleInputChange}
+          <input value={place} className="form-field mx-2" placeholder="Any location" onChange={handleInputChange}
             name="location"/>
         </div>
         
@@ -47,8 +45,8 @@ const LocationSearch = () => {
           Submit
         </button>
 
-        {cribs && <div> {`page ${currentPage}`} <button className='mx-2' onClick={nextPage}> next page </button> </div>}
-    	  {currentPage > 1 && <button onClick={previousPage}>previous page</button>}
+        {cribs && <div> {`page ${page}`} <button className='mx-2' onClick={nextPage}> next page </button> </div>}
+    	  {page > 1 && <button onClick={previousPage}>previous page</button>}
     	  
         <ul>
         {cribs && cribs.map(crib => <li>{crib.name}, {crib.address.country}</li>)}

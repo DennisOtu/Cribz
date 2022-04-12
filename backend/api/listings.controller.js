@@ -2,19 +2,20 @@ import ListingsDAO from '../dao/listingsDao.js'
 
 export default class ListingsController {
   static async apiGetAll(req, res, next) {
-    const listingsPerPage = req.query.listingsPerPage ? parseInt(req.query.listingsPerPage, 10) : 20
-    const page = req.query.page ? parseInt(req.query.page, 10) : 0
-    const list = await ListingsDAO.getAll(listingsPerPage, page)
+    const limit = req.query.limit ? parseInt(req.query.limit) : 20
+    const pageNum = req.query.page ? parseInt(req.query.page) : 1
+    const list = await ListingsDAO.getAll(limit, pageNum)
     res.json(list)
   }
 
   static async apiGetLocation(req, res, next) {
     if (req.query.location) {
+      const limit = req.query.limit ? parseInt(req.query.limit) : 20
       const location = req.query.location
-      const page = req.query.page ? parseInt(req.query.page, 10) : 0
-
-      console.log(`"query.location" : ${location} (controller)`)
-      const list = await ListingsDAO.getLocation(location, page)
+      const pageNum = req.query.page ? parseInt(req.query.page) : 1
+      console.log(`query.page : ${pageNum} controller`)
+      console.log(`query.location : ${location} (controller)`)
+      const list = await ListingsDAO.getLocation(limit, location, pageNum)
       res.json(list)
     } else {
       console.log('no query entered')
@@ -24,11 +25,12 @@ export default class ListingsController {
 
   static async apiGetBeds(req, res, next) {
     if (!isNaN(req.query.bedrooms)) {
+      const limit = req.query.limit ? parseInt(req.query.limit) : 20
       const beds = parseInt(req.query.bedrooms)
-      const page = req.query.page ? parseInt(req.query.page, 10) : 0
+      const pageNum = req.query.page ? parseInt(req.query.page) : 1
 
-      console.log(`"query.beds" : ${beds} (controller)`)
-      const list = await ListingsDAO.getBeds(beds, page)
+      console.log(`query.beds : ${beds} (controller)`)
+      const list = await ListingsDAO.getBeds(limit, beds, pageNum)
       res.json(list)
     } else {
       console.log('input is not a number')
@@ -39,12 +41,13 @@ export default class ListingsController {
 
   static async apiCompound(req, res, next) {
     if (req.query.location && req.query.bedrooms) {
+      const limit = req.query.limit ? parseInt(req.query.limit) : 20
       const location = req.query.location
       const beds = parseInt(req.query.bedrooms)
-      const page = req.query.page ? parseInt(req.query.page, 10) : 0
+      const pageNum = req.query.page ? parseInt(req.query.page) : 1
 
       console.log(`query.location: ${location}, query.beds: ${beds} (controller)`)
-      const list = await ListingsDAO.compound(location, beds, page)
+      const list = await ListingsDAO.compound(limit, location, beds, pageNum)
       res.json(list)
     } else {
       console.log('input field empty')

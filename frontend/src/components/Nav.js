@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 const Navbar = () => {
 
   return (
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+      <nav className="navbar navbar-expand navbar-light">
 
         <Link to="/" className="mx-4 nav-link">
           Home

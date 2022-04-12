@@ -8,6 +8,7 @@ export default class ListingsDAO {
     if (listings) {
       return
     }
+    
     try {
       listings = await conn.db(process.env.LISTINGS_NS).collection("listingsAndReviews")
     } catch (e) {
@@ -17,12 +18,13 @@ export default class ListingsDAO {
     }
   }
 
-  static async getAll(listingsPerPage, page) {
+  static async getAll(limit, pageNum) {
 
     try {
+      const page = pageNum - 1
       const allListings = listings.find()
       console.log('data retrieved')
-      const cursor = allListings.limit(listingsPerPage).skip(listingsPerPage * page)
+      const cursor = allListings.skip(limit * page).limit(limit)
 
       const list = await cursor.toArray()
       console.log(`${list.length} items per page`)
@@ -32,11 +34,11 @@ export default class ListingsDAO {
     }
   }
 
-  static async getLocation(location, page) {
+  static async getLocation(limit, location, pageNum) {
     if (location) {
       console.log(`query.location : ${location} (dao)`)
-      const listingsPerPage = 20
-        try {
+      try {
+          const page = pageNum - 1
           const allListings = listings.aggregate(
             [
               {
@@ -54,7 +56,8 @@ export default class ListingsDAO {
           )
 
           console.log('data retrieved')
-          const cursor = allListings.limit(listingsPerPage).skip(listingsPerPage * page)
+          console.log(`computed page: ${page} dao`);
+          const cursor = allListings.skip(limit * page).limit(limit)
     
           const list = await cursor.toArray()
           console.log(`${list.length} items per page`)
@@ -67,15 +70,14 @@ export default class ListingsDAO {
     }
   }
 
-  static async getBeds(beds,page) {
+  static async getBeds(limit, beds, pageNum) {
     if (beds) {
       console.log(`query.beds : ${beds} (dao)`)
-      const listingsPerPage = 20
         try {
           const allListings = listings.find({ 'bedrooms': beds })
 
           console.log('data retrieved')
-          const cursor = allListings.limit(listingsPerPage).skip(listingsPerPage * page)
+          const cursor = allListings.skip(limit * page).limit(limit)
     
           const list = await cursor.toArray()
           console.log(`${list.length} items per page`)
@@ -88,11 +90,11 @@ export default class ListingsDAO {
     }
   }
 
-  static async compound(location, beds, page) {
+  static async compound(limit, location, beds, pageNum) {
     if (location && beds) {
       console.log(`query.location: ${location}, query.beds : ${beds} (dao)`)
-      const listingsPerPage = 20
       try {
+        const page = pageNum - 1
         const allListings = listings.aggregate(
           [
             {
@@ -111,7 +113,7 @@ export default class ListingsDAO {
         )
 
         console.log('data retrieved')
-        const cursor = allListings.limit(listingsPerPage).skip(listingsPerPage * page)
+        const cursor = allListings.skip(limit * page).limit(limit)
         
         const list = await cursor.toArray()
         console.log(`${list.length} items per page`)
