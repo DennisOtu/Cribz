@@ -36,7 +36,6 @@ export default class ListingsController {
       console.log('input is not a number')
       return
     }
-
   }
 
   static async apiCompound(req, res, next) {
