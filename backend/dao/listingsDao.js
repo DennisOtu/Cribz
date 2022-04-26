@@ -29,14 +29,12 @@ export default class ListingsDAO {
           }
         }
       ])
-      console.log('Data retrieved (getAll)')
-
       const startIndex = (limit * page)
       const endIndex = (limit * page) + limit
       const list = await allListings.toArray()
       const total = list[0].metadata[0].total
 
-      console.log(`total: ${total} items`)
+      console.log(`Data retrieved (getAll), total: ${total} items`)
       console.log(`${limit} items per page, ${list[0].data.length} items displayed`)
       console.log(`${Math.ceil(total / limit)} pages`)
       console.log(`pageRequested: page ${pageNum}`)
@@ -87,8 +85,6 @@ export default class ListingsDAO {
             }
           ]
         )
-        console.log('Data retrieved (getLocation)')
-
         const startIndex = (limit * page)
         const endIndex = (limit * page) + limit
       
@@ -96,7 +92,7 @@ export default class ListingsDAO {
         const list = await allListings.toArray()
         const total = list[0].metadata[0].total
 
-        console.log(`total: ${total} items`)
+        console.log(`Data retrieved (getLocation), total: ${total} items`)
         console.log(`${limit} items per page, ${list[0].data.length} items displayed`)
         console.log(`${Math.ceil(total / limit)} pages`)
         console.log(`pageRequested: page ${pageNum}`)
@@ -150,15 +146,12 @@ export default class ListingsDAO {
             }
           ]
         )
-    
-        console.log('Data retrieved (compound)')
-
         const startIndex = (limit * page)
         const endIndex = (limit * page) + limit
         const list = await allListings.toArray()
         const total = list[0].metadata[0].total
 
-        console.log(`total: ${total} items`)
+        console.log(`Data retrieved (compound), total: ${total} items`)
         console.log(`${limit} items per page, ${list[0].data.length} items displayed`)
         console.log(`${Math.ceil(total / limit)} pages`)
         console.log(`pageRequested: page ${pageNum}`)

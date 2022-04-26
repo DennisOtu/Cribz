@@ -10,7 +10,7 @@ function LocNBedsComponent(props) {
     if (props.location && props.bedrooms) {
       return axios.get(`http://localhost:8000/api/v1/listings/compound?location=${props.location}&bedrooms=${props.bedrooms}&page=${props.page}`)
     }
-    if (props.location) {
+    if (!props.bedrooms) {
       return axios.get(`http://localhost:8000/api/v1/listings/location?location=${props.location}&page=${props.page}`)
     }
   }

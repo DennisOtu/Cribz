@@ -29,7 +29,7 @@ function CompoundSearchPage(props) {
       setLocation(place)
       setBedrooms(beds)
     }
-    if (place) {
+    if (!beds) {
       setExplore(false)
       setLocation(place)
       setBedrooms('')
@@ -54,7 +54,7 @@ function CompoundSearchPage(props) {
       </div>
     )
   } else {
-    if (location && bedrooms) {
+    if (bedrooms && location) {
       return (
         <div>
           <CompoundSearchBar allCribz={allCribz} initSearch={initSearch}/>
@@ -62,7 +62,7 @@ function CompoundSearchPage(props) {
         </div>
       )
     }
-    if (location) {
+    if (!bedrooms) {
       return (
         <div>
           <CompoundSearchBar allCribz={allCribz} initSearch={initSearch} location={location}/>
