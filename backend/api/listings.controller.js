@@ -5,7 +5,7 @@ export default class ListingsController {
     const limit = req.query.limit ? parseInt(req.query.limit) : 20
     const pageNum = req.query.page ? parseInt(req.query.page) : 1
     const list = await ListingsDAO.getAll(limit, pageNum)
-    res.json(list)
+    res.json(list[0].data)
   }
 
   static async apiGetLocation(req, res, next) {
@@ -13,16 +13,33 @@ export default class ListingsController {
       const limit = req.query.limit ? parseInt(req.query.limit) : 20
       const location = req.query.location
       const pageNum = req.query.page ? parseInt(req.query.page) : 1
-      console.log(`query.page : ${pageNum} controller`)
-      console.log(`query.location : ${location} (controller)`)
+      //console.log(`query.page : ${pageNum} controller`)
+      //console.log(`query.location : ${location} (controller)`)
       const list = await ListingsDAO.getLocation(limit, location, pageNum)
-      res.json(list)
+      //console.log(list[0].data);
+      res.json(list[0].data)
     } else {
       console.log('no query entered')
     }
 
   }
 
+  static async apiCompound(req, res, next) {
+    if (req.query.location && req.query.bedrooms) {
+      const limit = req.query.limit ? parseInt(req.query.limit) : 20
+      const location = req.query.location
+      const beds = parseInt(req.query.bedrooms)
+      const pageNum = req.query.page ? parseInt(req.query.page) : 1
+
+      //console.log(`query.location: ${location}, query.beds: ${beds} (controller)`)
+      const list = await ListingsDAO.compound(limit, location, beds, pageNum)
+      res.json(list[0].data)
+    } else {
+      console.log('input field empty')
+      return
+    }
+  }
+  
   static async apiGetBeds(req, res, next) {
     if (!isNaN(req.query.bedrooms)) {
       const limit = req.query.limit ? parseInt(req.query.limit) : 20
@@ -38,21 +55,5 @@ export default class ListingsController {
     }
   }
 
-  static async apiCompound(req, res, next) {
-    if (req.query.location && req.query.bedrooms) {
-      const limit = req.query.limit ? parseInt(req.query.limit) : 20
-      const location = req.query.location
-      const beds = parseInt(req.query.bedrooms)
-      const pageNum = req.query.page ? parseInt(req.query.page) : 1
-
-      console.log(`query.location: ${location}, query.beds: ${beds} (controller)`)
-      const list = await ListingsDAO.compound(limit, location, beds, pageNum)
-      res.json(list)
-    } else {
-      console.log('input field empty')
-      return
-    }
-
-  }
 }
 

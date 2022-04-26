@@ -1,24 +1,39 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import LocNBedsComponent from "./locNBedsComponent"
 import ExploreComponent from "./exploreComponent"
 import CompoundSearchBar from "./compoundSearchBar"
 
-function CompoundSearchPage() {
+function CompoundSearchPage(props) {
   const [location, setLocation] = useState('')
   const [bedrooms, setBedrooms] = useState('')
   const [page, setPage] = useState(1)
   const [explore, setExplore] = useState(true)
-  
-  //const [cribz, setCribz] = useState()
+
+  useEffect(() => {
+    if (props.locSearch) {
+      setLocation(props.location)
+      setBedrooms(props.bedrooms)
+      setExplore(false)
+      //setLocOnly(locSearch)
+    }
+  },[] 
+  )
 
   function allCribz() {
     setExplore(true)
   }
 
   function initSearch(place, beds) {
-    setExplore(false)
-    setLocation(place)
-    setBedrooms(beds)
+    if (place && beds) {
+      setExplore(false)
+      setLocation(place)
+      setBedrooms(beds)
+    }
+    if (place) {
+      setExplore(false)
+      setLocation(place)
+      setBedrooms('')
+    }
   }
 
   function nextPage() {
@@ -39,12 +54,23 @@ function CompoundSearchPage() {
       </div>
     )
   } else {
-    return (
-      <div>
-        <CompoundSearchBar allCribz={allCribz} initSearch={initSearch}/>
-        <LocNBedsComponent location={location} bedrooms={bedrooms} nextPage={nextPage} previousPage={previousPage} page={page}/>
-      </div>
-    )
+    if (location && bedrooms) {
+      return (
+        <div>
+          <CompoundSearchBar allCribz={allCribz} initSearch={initSearch}/>
+          <LocNBedsComponent location={location} bedrooms={bedrooms} nextPage={nextPage} previousPage={previousPage} page={page}/>
+        </div>
+      )
+    }
+    if (location) {
+      return (
+        <div>
+          <CompoundSearchBar allCribz={allCribz} initSearch={initSearch} location={location}/>
+          <LocNBedsComponent location={location} nextPage={nextPage} previousPage={previousPage} page={page}/>
+        </div>
+      )
+    }
+
   }
   
 }

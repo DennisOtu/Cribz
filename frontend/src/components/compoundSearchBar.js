@@ -16,11 +16,11 @@ function CompoundSearchBar(props) {
     <div className="d-flex flex-row my-4">
       <div className="col-lg-6 d-flex flex-column">
         <div className="container d-flex flex-row">
-          <button onClick={()=>props.allCribz()} className="btn btn-secondary">
+          <button onClick={()=>props.allCribz()} className="btn btn-warning">
             Explore
           </button>
           <div className="form-group">
-            <input value={place} className="form-field mx-2" placeholder="All locations"
+            <input value={place} className="form-field mx-2" placeholder={props.location? `${props.location}` : "All locations"}
               onChange={changePlace}
               name="location"
             />
@@ -41,7 +41,7 @@ function CompoundSearchBar(props) {
               </select>
           </div> 
         
-          <button onClick={()=>props.initSearch(place, beds)} className="mx-2 btn btn-primary">Search</button>
+          <button onClick={()=>props.initSearch(place, beds)} className="mx-2 btn btn-success">Search</button>
         </div>
         </div>
     </div>

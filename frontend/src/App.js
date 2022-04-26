@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import { Routes, Route, Link } from "react-router-dom"
 //import "bootstrap/dist/css/bootstrap.min.css"
 import PropertyList from "./components/propertyListComponent"
-import HomePage from "./components/homeComponent"
+import HomePage from "./components/homePage"
 import Navbar from "./components/Nav"
 import LocationSearch from './components/locationSearchComponent'
 import BedroomSearch from "./components/bedroomSearchComponent"

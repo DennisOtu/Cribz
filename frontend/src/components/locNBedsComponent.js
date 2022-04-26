@@ -7,7 +7,12 @@ function LocNBedsComponent(props) {
   useEffect(() => refetch, [props.page])
   
   const findCribz = () => {
-    return axios.get(`http://localhost:8000/api/v1/listings/compound?location=${props.location}&bedrooms=${props.bedrooms}&page=${props.page}`)
+    if (props.location && props.bedrooms) {
+      return axios.get(`http://localhost:8000/api/v1/listings/compound?location=${props.location}&bedrooms=${props.bedrooms}&page=${props.page}`)
+    }
+    if (props.location) {
+      return axios.get(`http://localhost:8000/api/v1/listings/location?location=${props.location}&page=${props.page}`)
+    }
   }
   
   const { data, isLoading, refetch } = useQuery('find', findCribz)
