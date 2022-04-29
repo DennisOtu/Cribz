@@ -9,6 +9,7 @@ import BedroomSearch from "./components/bedroomSearchComponent"
 import CompoundSearchPage from "./components/compoundSearchPage"
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import './App.css'
 
 const queryClient = new QueryClient()
 

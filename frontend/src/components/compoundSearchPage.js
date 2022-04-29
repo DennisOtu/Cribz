@@ -2,12 +2,16 @@ import { useState, useEffect } from "react"
 import LocNBedsComponent from "./locNBedsComponent"
 import ExploreComponent from "./exploreComponent"
 import CompoundSearchBar from "./compoundSearchBar"
+import ReactPaginate from "react-paginate"
 
 function CompoundSearchPage(props) {
   const [location, setLocation] = useState('')
   const [bedrooms, setBedrooms] = useState('')
   const [page, setPage] = useState(1)
   const [explore, setExplore] = useState(true)
+  const [paginate, setPaginate] = useState(false)
+  const limit = 20
+  const [pageCount, setPageCount] = useState(0)
 
   useEffect(() => {
     if (props.locSearch) {
@@ -25,32 +29,38 @@ function CompoundSearchPage(props) {
 
   function initSearch(place, beds) {
     if (place && beds) {
+      setPageCount(0)
       setExplore(false)
       setLocation(place)
       setBedrooms(beds)
     }
     if (!beds) {
+      setPageCount(0)
       setExplore(false)
       setLocation(place)
       setBedrooms('')
     }
   }
 
-  function nextPage() {
-    setPage(page => page + 1)
-    console.log(`nextBtn clicked: page = ${page}`)
+  function paginateData(totalCribz) {
+    setPageCount(Math.ceil(totalCribz / limit))
+    setPaginate(true)
   }
 
-  function previousPage() {
-    setPage(page => page -1)
-    console.log(`prevBtn clicked: page = ${page}`);
+  const changePage = (e) => {
+    setPage(e.selected)
   }
 
   if (explore) {
     return (
       <div>
-        <CompoundSearchBar allCribz={allCribz} initSearch={initSearch}/>
-        <ExploreComponent nextPage={nextPage} previousPage={previousPage} page={page}/>
+        <CompoundSearchBar allCribz={allCribz} initSearch={initSearch} />
+
+        <ExploreComponent page={page} paginateData={paginateData} />
+        <ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={pageCount}
+        onPageChange={changePage} pageRangeDisplayed={5} containerClassName={"paginationDiv"} previousLinkClassName={"previousBttn"}
+        nextLinkClassName={"nextBttn"} activeClassName={"paginationActive"} renderOnZeroPageCount={null}
+        />
       </div>
     )
   } else {
@@ -58,7 +68,12 @@ function CompoundSearchPage(props) {
       return (
         <div>
           <CompoundSearchBar allCribz={allCribz} initSearch={initSearch}/>
-          <LocNBedsComponent location={location} bedrooms={bedrooms} nextPage={nextPage} previousPage={previousPage} page={page}/>
+          <LocNBedsComponent location={location} bedrooms={bedrooms} page={page} paginateData={paginateData} />
+          <ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={pageCount}
+          onPageChange={changePage} pageRangeDisplayed={5} containerClassName={"paginationDiv"} previousLinkClassName={"previousBttn"}
+          nextLinkClassName={"nextBttn"} disabledClassName={"paginationDisabled"} activeClassName={"paginationActive"}
+          renderOnZeroPageCount={null}
+          />
         </div>
       )
     }
@@ -66,7 +81,11 @@ function CompoundSearchPage(props) {
       return (
         <div>
           <CompoundSearchBar allCribz={allCribz} initSearch={initSearch} location={location}/>
-          <LocNBedsComponent location={location} nextPage={nextPage} previousPage={previousPage} page={page}/>
+          <LocNBedsComponent location={location} page={page} paginateData={paginateData} />
+          <ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={pageCount}
+          onPageChange={changePage} pageRangeDisplayed={5} containerClassName={"paginationDiv"} previousLinkClassName={"previousBttn"}
+          nextLinkClassName={"nextBttn"} disabledClassName={"paginationDisabled"} activeClassName={"paginationActive"} renderOnZeroPageCount={null}
+          />
         </div>
       )
     }

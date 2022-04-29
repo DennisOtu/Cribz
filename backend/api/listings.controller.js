@@ -5,7 +5,7 @@ export default class ListingsController {
     const limit = req.query.limit ? parseInt(req.query.limit) : 20
     const pageNum = req.query.page ? parseInt(req.query.page) : 1
     const list = await ListingsDAO.getAll(limit, pageNum)
-    res.json(list[0].data)
+    res.json(list)
   }
 
   static async apiGetLocation(req, res, next) {
@@ -17,11 +17,10 @@ export default class ListingsController {
       //console.log(`query.location : ${location} (controller)`)
       const list = await ListingsDAO.getLocation(limit, location, pageNum)
       //console.log(list[0].data);
-      res.json(list[0].data)
+      res.json(list)
     } else {
       console.log('no query entered')
     }
-
   }
 
   static async apiCompound(req, res, next) {
@@ -33,7 +32,7 @@ export default class ListingsController {
 
       //console.log(`query.location: ${location}, query.beds: ${beds} (controller)`)
       const list = await ListingsDAO.compound(limit, location, beds, pageNum)
-      res.json(list[0].data)
+      res.json(list)
     } else {
       console.log('input field empty')
       return
