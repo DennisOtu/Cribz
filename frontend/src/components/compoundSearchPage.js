@@ -53,7 +53,7 @@ function CompoundSearchPage(props) {
 
   if (explore) {
     return (
-      <div>
+      <div className="greySpace">
         <CompoundSearchBar allCribz={allCribz} initSearch={initSearch} />
 
         <ExploreComponent page={page} paginateData={paginateData} />

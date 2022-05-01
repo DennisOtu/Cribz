@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import searchIcon from '../images/searchIcon.png'
 
 function CompoundSearchBar(props) {
   const [place, setPlace] = useState('')
@@ -13,21 +14,21 @@ function CompoundSearchBar(props) {
   }
 
   return (
-    <div className="d-flex flex-row my-4">
+    <div className="d-flex flex-row py-2">
       <div className="col-lg-6 d-flex flex-column">
         <div className="container d-flex flex-row">
-          <button onClick={()=>props.allCribz()} className="btn btn-warning">
+          <button onClick={()=>props.allCribz()} className="butn">
             Explore
           </button>
           <div className="form-group">
-            <input value={place} className="form-field mx-2" placeholder={props.location? `${props.location}` : "All locations"}
+            <input value={place} className="searchBox form-field mx-2" placeholder={props.location? `${props.location}` : "All locations"}
               onChange={changePlace}
               name="location"
             />
           </div>
 
-          <div >
-              <select value={beds} onChange={changeBeds}>
+          <div>
+              <select className='searchBox' value={beds} onChange={changeBeds}>
                 <option value=''>All Beds</option>
                 <option value='1'> 1 </option>
                 <option value='2'> 2 </option>
@@ -41,7 +42,7 @@ function CompoundSearchBar(props) {
               </select>
           </div> 
         
-          <button onClick={()=>props.initSearch(place, beds)} className="mx-2 btn btn-success">Search</button>
+          <button onClick={()=>props.initSearch(place, beds)} className="searchButn mx-2"><img src={ searchIcon } className='searchIcon'/></button>
         </div>
         </div>
     </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import searchIcon from '../images/searchIcon.png'
 
 function LocationSearchBar(props) {
   const [place, setPlace] = useState('')
@@ -8,19 +9,18 @@ function LocationSearchBar(props) {
   }
 
   return (
-    <div className="d-flex flex-row my-4">
-      <div className="col-lg-6 d-flex flex-column">
-        <div className="container d-flex flex-row">
-          <div className="form-group">
-            <input value={place} className="form-field mx-2" placeholder="Search Location"
-              onChange={changePlace}
-              name="location"
-            />
-          </div>
+    <div>
+      <form className='locSearchBox'>
+
+        <input value={place} className="" placeholder="Search Location"
+          onChange={changePlace}
+          name="location"
+        />
+        <button  onClick={() => props.initSearch(place)}><img src={ searchIcon } className='searchIcon'/></button>
         
-          <button onClick={()=>props.initSearch(place)} className="mx-2 btn btn-success">Search</button>
-        </div>
-        </div>
+      </form>
+
+
     </div>
   )
 }

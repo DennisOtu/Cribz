@@ -1,27 +1,8 @@
-html{
-  box-sizing: border-box;
-}
-
-*, *::before, *::after{
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
-
-:root{
-  --fontColor: #FFFFFF;
-  --letterSpaceSm: 0.1em;
-  --letterSpaceMd: 0.2em;
-  --letterSpaceLg: 0.4em;
-  --fontBrand: 'Roboto-Slab', sans-serif;
-  --fontAction: 'Roboto', sans-serif;
-  --fontText: 'Poppings', sans-serif;
-}
-
-
 body {
   margin: 0;
-  font-family: var(--fontText);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -31,6 +12,3 @@ code {
     monospace;
 }
 
-.brand {
-  font-family: var(--fontBrand);
-}
