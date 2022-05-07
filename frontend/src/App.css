@@ -11,19 +11,27 @@ html{
 }
 
 :root{
-  --fontColor: #392A2A;
+  --fontColor: rgb(88, 88, 88);
   --letterSpaceSm: 0.1em;
   --letterSpaceMd: 0.2em;
   --letterSpaceLg: 0.4em;
   --fontPrime: 'Roboto Serif', serif;
   --fontSec: 'Poppins', sans-serif;
+  --cribYellow: #ff8e0d;
+  --cribBlue: #337180;
 }
 
 .navBar {
-  height: 50px;
+  position: fixed;
+  top: 0; 
+  width: 100%;
+  z-index: 9999;
+  height: 45px;
   display: flex;
   align-items: center;
   text-decoration: none;
+  overflow: hidden;
+  background-color: white;
 }
 
 .navRight {
@@ -31,9 +39,10 @@ html{
   display: flex;
   align-items: center;
   margin-left: auto;
-  margin-right: 2em;
+  margin-right: 4em;
   font-family: var(--fontSec);
   font-weight: 400;
+  font-size: 14px;
   justify-content: space-between;
 }
 
@@ -42,11 +51,30 @@ body {
   height: 100vh;
 }
 
+.fixedTopSearch {
+  position: fixed;
+  z-index: 9999;
+  top: 70px;
+  margin-left: 26%;
+}
+
+.mapDiv {
+  width: 630px;
+  height: 366px;
+  border-radius: 10px;
+  padding: 3px;
+  border: 1px solid white;
+  position: fixed;
+  top: 23%;
+  left: 48%;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
+}
+
 .brand {
   font-family: var(--fontPrime);
   font-weight: 800;
-  font-size: 28px;
-  color: rgba(255, 122, 0, 0.77);
+  font-size: 24px;
+  color: var(--cribYellow);
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -55,34 +83,23 @@ body {
   margin-right: 5px;
 }
 
-.actionText {
-  font-family: var(--fontSec);
-}
-
-.infoText {
-  color: var(--fontColor);
-  font-family: var(--fontSec);
-  font-weight: 200;
-  letter-spacing: var(--letterSpaceMd);
-}
-
 .greySpace {
-  background: rgba(128, 128, 128, 0.459);
+  background: rgba(128, 128, 128, 0.3);
 }
 
 .hero {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  border: 1px;
   border-radius: 10px;
   background: url(./images/heroImage.jpg);
   background-position: center;
   background-size: cover;
   align-items: center;
-  margin-inline: 10px;
+  margin-inline: 16px;
+  margin-top: 46px;
 }
 
 .heroIcon {
@@ -91,9 +108,9 @@ body {
 
 .jumboText {
   font-family: var(--fontSec);
-  font-size: 96px;
+  font-size: 90px;
   font-weight: 900;
-  color: rgba(255, 122, 0, 0.77);
+  color: var(--cribYellow);
   text-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -104,24 +121,20 @@ body {
   width: 200px;
   text-align: center;
   font-family: var(--fontSec);
+  font-size: 14px;
   color: var(--fontColor);
 }
 
 .butn {
-  border-radius: 15px;
-  width: 100px;
-  height: 35px;
+  border-radius: 8px;
+  padding-inline: 16px;
+  height: 34px;
   border: none;
   font-family: var(--fontSec);
   font-weight: 200;
+  font-size: 14px;
   color: white;
-  background: #337180;
-  ;
-}
-
-.selectBox {
-  width: 80px;
-  border-radius: 25px;
+  background: var(--cribBlue);
 }
 
 .searchButn {
@@ -142,7 +155,7 @@ body {
   border-radius: 25px;
   background: rgba(92, 90, 90, 0.726);
   font-family: var(--fontSec);
-  border: 1px;
+  font-size: 14px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -152,11 +165,21 @@ body {
 .locSearchBox input {
   background: transparent;
   border: 0;
+  border-radius: inherit;
   outline: none;
   width: 100%;
+  height: 100%;
   text-align: center;
+  font-weight: 400;
   color: white;
-  font-weight: 500;
+}
+
+.locSearchInput::placeholder {
+  color: white;
+  opacity: 0.7;
+  font-style: italic;
+  font-weight: 200;
+  font-size: 12px;
 }
 
 .locSearchBox button {
@@ -168,24 +191,51 @@ body {
   margin-right: 0;
 }
 
+.cribCard {
+  height: 250px;
+  width: 270px;
+  border-radius: 10px;
+  border: 1px solid white;
+  padding-inline: 0;
+  font-family: var(--fontSec);
+  font-size: 14px;
+  letter-spacing: var(--letterSpaceSm);
+  background: rgba(255, 255, 255, 0.801);
+  color: var(--fontColor);
+}
+
+.cribCard img {
+  width: 100%;
+  height: 63%;
+  border-radius: inherit;
+  margin: 0;
+}
+
+.cribCard:hover {
+  background: rgb(255, 255, 255);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  color: black;
+}
+
 .paginationDiv {
   display: inline-flex;
   list-style: none;
   justify-content: space-between;
   padding-right: 2em;
   padding-block: 8px;
-  margin-left: 2em;
-  width: 40%;
+  margin-left: 33%;
+  width: 30%;
   border-radius: 20px;
-  border: 1px solid #2b2eff;
-
+  background: white;
+  font-family: var(--fontSec);
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .paginationActive a {
   padding-inline: 1em;
-  background-color: #ffaa2b;
+  background-color: var(--cribYellow);
   border-radius: 20px;
-
 }
-
 

@@ -17,7 +17,7 @@ const Navbar = () => {
           Search Cribz
         </Link>
 
-        <Link to=""style={{ textDecoration: 'none', color: 'var(--fontColor)' }}>
+        <Link to="" style={{ textDecoration: 'none', color: 'var(--fontColor)' }}>
           Sign Up
         </Link>
 

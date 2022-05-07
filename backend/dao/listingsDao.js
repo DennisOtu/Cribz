@@ -177,6 +177,24 @@ export default class ListingsDAO {
       console.log('no query entered')
     }
   }
+  
+  static async getCrib(cribID) {
+    if (cribID) {
+      console.log(`cribID : ${cribID} (dao)`)
+      try {
+        const item = await listings.aggregate([
+          { $match: { "_id": cribID } }
+        ])
+        const crib = item.toArray()
+        console.log('data retrieved (getCribs)')
+        return crib  
+      } catch (e) {
+        console.error(`Unable to get crib, ${e}`);
+      }
+    } else {
+      console.log('no cribID entered')
+    }
+  }
 
   static async getBeds(limit, beds, pageNum) {
     if (beds) {

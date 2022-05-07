@@ -24,6 +24,9 @@ function CompoundSearchPage(props) {
   )
 
   function allCribz() {
+    setPageCount(0)
+    setLocation('')
+    setBedrooms('')
     setExplore(true)
   }
 
@@ -66,7 +69,7 @@ function CompoundSearchPage(props) {
   } else {
     if (bedrooms && location) {
       return (
-        <div>
+        <div className="greySpace">
           <CompoundSearchBar allCribz={allCribz} initSearch={initSearch}/>
           <LocNBedsComponent location={location} bedrooms={bedrooms} page={page} paginateData={paginateData} />
           <ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={pageCount}
@@ -79,7 +82,7 @@ function CompoundSearchPage(props) {
     }
     if (!bedrooms) {
       return (
-        <div>
+        <div className="greySpace">
           <CompoundSearchBar allCribz={allCribz} initSearch={initSearch} location={location}/>
           <LocNBedsComponent location={location} page={page} paginateData={paginateData} />
           <ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={pageCount}
