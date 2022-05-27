@@ -1,6 +1,7 @@
 import LocationSearchBar from "./locationSearchBar"
 import { useState } from "react"
 import CompoundSearchPage from "./compoundSearchPage"
+import cribIcon from '../images/cribIcon.png'
 
 function HomePage() {
   const [location, setLocation] = useState('')
@@ -20,8 +21,9 @@ function HomePage() {
     )
   } else {
     return (
-      <div>
-        <h1>Find your dream home</h1>
+      <div className="hero">
+        <img src={ cribIcon } className="heroIcon"/>
+        <h1 className="jumboText">Find your dream home</h1>
         <LocationSearchBar location={location} initSearch={initSearch}/>
       </div>
 

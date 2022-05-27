@@ -1,28 +1,34 @@
 import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
+import cribIcon from '../images/cribIcon.png'
 
 const Navbar = () => {
 
   return (
-      <nav className="navbar navbar-expand navbar-light">
-
-        <Link to="/" className="mx-4 nav-link">
-          Cribz
-        </Link>
+    <nav className="navBar">
       
-        <Link to="listings/compound" className="mx-4 nav-link">
+      <Link to="/" className="brand mr-4 nav-link">
+      <img src={cribIcon} className="brandIcon" />
+        Cribz
+      </Link>
+
+      <div className="navRight" >
+        <Link to="listings/compound" style={{ textDecoration: 'none', color: 'var(--fontColor)' }}>
           Search Cribz
         </Link>
 
-        <Link to="listings/location" className="mx-4 nav-link">
-          Location
+        <Link to=""style={{ textDecoration: 'none', color: 'var(--fontColor)' }}>
+          Sign Up
         </Link>
 
-        <Link to="listings/bedrooms" className="mx-4 nav-link">
-          Bedrooms
+        <Link to="" style={{ textDecoration: 'none', color: 'var(--fontColor)' }}>
+          Log In
         </Link>
+      </div>
+    
 
-      </nav>
+
+    </nav>
 
   )
 }
