@@ -19,16 +19,40 @@ export default class ListingsDAO {
   }
 
   static async getAll(limit, pageNum) {
-
     try {
       const page = pageNum - 1
-      const allListings = listings.find()
-      console.log('data retrieved')
-      const cursor = allListings.skip(limit * page).limit(limit)
+      const allListings = await listings.aggregate([
+        {
+          $facet: {
+            metadata: [{ $count: 'total' }],
+            data: [{ $skip: limit * page }, { $limit: limit }]
+          }
+        }
+      ])
+      const startIndex = (limit * page)
+      const endIndex = (limit * page) + limit
+      const list = await allListings.toArray()
+      const total = list[0].metadata[0].total
 
-      const list = await cursor.toArray()
-      console.log(`${list.length} items per page`)
-      return list  
+      console.log(`Data retrieved (getAll), total: ${total} items`)
+      console.log(`${limit} items per page, ${list[0].data.length} items displayed`)
+      console.log(`${Math.ceil(total / limit)} pages`)
+      console.log(`pageRequested: page ${pageNum}`)
+      console.log(`startIndex = ${startIndex}, endIndex = ${endIndex}`)
+
+      if (startIndex > 0) {
+        console.log('prevPage: true')
+      } else {
+        console.log('prevPage: false')          
+      }
+
+      if (endIndex < list[0].metadata[0].total) {
+        console.log('nextPage: true')
+      } else {
+        console.log('nextPage: false')
+      }
+
+      return list
     } catch (e) {
       console.error(`Unable to get listings, ${e}`);
     }
@@ -36,66 +60,10 @@ export default class ListingsDAO {
 
   static async getLocation(limit, location, pageNum) {
     if (location) {
-      console.log(`query.location : ${location} (dao)`)
-      try {
-          const page = pageNum - 1
-          const allListings = listings.aggregate(
-            [
-              {
-                $search: {
-                  index: 'location',
-                  text: {
-                    query: location,
-                    path: {
-                      'wildcard': '*'
-                    }
-                  }
-                }
-              }
-            ]
-          )
-
-          console.log('data retrieved')
-          console.log(`computed page: ${page} dao`);
-          const cursor = allListings.skip(limit * page).limit(limit)
-    
-          const list = await cursor.toArray()
-          console.log(`${list.length} items per page`)
-          return list  
-        } catch (e) {
-          console.error(`Unable to get listings, ${e}`);
-        }
-    } else {
-      console.log('no query entered')
-    }
-  }
-
-  static async getBeds(limit, beds, pageNum) {
-    if (beds) {
-      console.log(`query.beds : ${beds} (dao)`)
-        try {
-          const allListings = listings.find({ 'bedrooms': beds })
-
-          console.log('data retrieved')
-          const cursor = allListings.skip(limit * page).limit(limit)
-    
-          const list = await cursor.toArray()
-          console.log(`${list.length} items per page`)
-          return list  
-        } catch (e) {
-          console.error(`Unable to get listings, ${e}`);
-        }
-    } else {
-      console.log('no query entered')
-    }
-  }
-
-  static async compound(limit, location, beds, pageNum) {
-    if (location && beds) {
-      console.log(`query.location: ${location}, query.beds : ${beds} (dao)`)
+      console.log(`Query.location : ${location}`)
       try {
         const page = pageNum - 1
-        const allListings = listings.aggregate(
+        const allListings = await listings.aggregate(
           [
             {
               $search: {
@@ -108,15 +76,99 @@ export default class ListingsDAO {
                 }
               }
             },
-            { $match: { "bedrooms": beds } }
+            
+            {
+              $facet: {
+                metadata: [{ $count: 'total' }],
+                data: [{ $skip: limit * page }, { $limit: limit }]
+              }
+            }
           ]
         )
+        const startIndex = (limit * page)
+        const endIndex = (limit * page) + limit
+      
+        //const cursor = allListings.skip(limit * page).limit(limit)
+        const list = await allListings.toArray()
+        const total = list[0].metadata[0].total
 
-        console.log('data retrieved')
-        const cursor = allListings.skip(limit * page).limit(limit)
-        
-        const list = await cursor.toArray()
-        console.log(`${list.length} items per page`)
+        console.log(`Data retrieved (getLocation), total: ${total} items`)
+        console.log(`${limit} items per page, ${list[0].data.length} items displayed`)
+        console.log(`${Math.ceil(total / limit)} pages`)
+        console.log(`pageRequested: page ${pageNum}`)
+        console.log(`startIndex = ${startIndex}, endIndex = ${endIndex}`)
+
+        if (startIndex > 0) {
+          console.log('prevPage: true')
+        } else {
+          console.log('prevPage: false')          
+        }
+
+        if (endIndex < list[0].metadata[0].total) {
+          console.log('nextPage: true')
+        } else {
+          console.log('nextPage: false')
+        }
+
+        return list 
+        } catch (e) {
+          console.error(`Unable to get listings, ${e}`);
+        }
+    } else {
+      console.log('no query entered')
+    }
+  }
+
+  static async compound(limit, location, beds, pageNum) {
+    if (location && beds) {
+      console.log(`Query.location: ${location}, Query.beds : ${beds}`)
+      try {
+        const page = pageNum - 1
+        const allListings = await listings.aggregate(
+          [
+            {
+              $search: {
+                index: 'location',
+                text: {
+                  query: location,
+                  path: {
+                    'wildcard': '*'
+                  }
+                }
+              }
+            },
+            { $match: { "bedrooms": beds } },
+            {
+              $facet: {
+                metadata: [{ $count: 'total' }],
+                data: [{ $skip: limit * page }, { $limit: limit }]
+              }
+            }
+          ]
+        )
+        const startIndex = (limit * page)
+        const endIndex = (limit * page) + limit
+        const list = await allListings.toArray()
+        const total = list[0].metadata[0].total
+
+        console.log(`Data retrieved (compound), total: ${total} items`)
+        console.log(`${limit} items per page, ${list[0].data.length} items displayed`)
+        console.log(`${Math.ceil(total / limit)} pages`)
+        console.log(`pageRequested: page ${pageNum}`)
+        console.log(`startIndex = ${startIndex}, endIndex = ${endIndex}`)
+
+        if (startIndex > 0) {
+          console.log('prevPage: true')
+        } else {
+          console.log('prevPage: false')          
+        }
+
+        if (endIndex < list[0].metadata[0].total) {
+          console.log('nextPage: true')
+        } else {
+          console.log('nextPage: false')
+        }
+
         return list
       } catch (e) {
         console.error(`Unable to get listings, ${e}`);
@@ -125,5 +177,32 @@ export default class ListingsDAO {
       console.log('no query entered')
     }
   }
+
+  static async getBeds(limit, beds, pageNum) {
+    if (beds) {
+      console.log(`query.beds : ${beds} (dao)`)
+        try {
+          const allListings = await listings.find({ 'bedrooms': beds })
+
+          const total = await allListings.count()
+    
+          console.log('data retrieved (getBeds)')
+
+          const startIndex = (limit * page)
+          const endIndex = (limit * page) + limit
+          const cursor = allListings.skip(limit * page).limit(limit)
+          const list = await cursor.toArray()
+
+          console.log(`start Index = ${startIndex}, end Index = ${endIndex}`)
+          console.log(`${list.length} items per page`)
+          return list  
+        } catch (e) {
+          console.error(`Unable to get listings, ${e}`);
+        }
+    } else {
+      console.log('no query entered')
+    }
+  }
+
 }
 

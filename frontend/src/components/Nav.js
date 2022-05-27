@@ -7,11 +7,11 @@ const Navbar = () => {
       <nav className="navbar navbar-expand navbar-light">
 
         <Link to="/" className="mx-4 nav-link">
-          Home
+          Cribz
         </Link>
-
-        <Link to="listings" className="mx-4 nav-link">
-          All Cribs
+      
+        <Link to="listings/compound" className="mx-4 nav-link">
+          Search Cribz
         </Link>
 
         <Link to="listings/location" className="mx-4 nav-link">
@@ -22,9 +22,6 @@ const Navbar = () => {
           Bedrooms
         </Link>
 
-        <Link to="listings/compound" className="mx-4 nav-link">
-          Compound Search
-        </Link>
       </nav>
 
   )
