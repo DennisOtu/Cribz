@@ -14,14 +14,14 @@ function CompoundSearchBar(props) {
   }
 
   return (
-    <div className="d-flex flex-row py-2">
-      <div className="col-lg-6 d-flex flex-column">
+    <div className="d-flex flex-row fixedTopSearch">
+      <div>
         <div className="container d-flex flex-row">
           <button onClick={()=>props.allCribz()} className="butn">
             Explore
           </button>
           <div className="form-group">
-            <input value={place} className="searchBox form-field mx-2" placeholder={props.location? `${props.location}` : "All locations"}
+            <input value={place} className="searchBox form-field mx-3" placeholder={props.location? `${props.location}` : "All locations"}
               onChange={changePlace}
               name="location"
             />
@@ -42,7 +42,7 @@ function CompoundSearchBar(props) {
               </select>
           </div> 
         
-          <button onClick={()=>props.initSearch(place, beds)} className="searchButn mx-2"><img src={ searchIcon } className='searchIcon'/></button>
+          <button onClick={()=>props.initSearch(place, beds)} className="searchButn mx-3"><img src={ searchIcon } className='searchIcon'/></button>
         </div>
         </div>
     </div>

@@ -12,7 +12,7 @@ function LocationSearchBar(props) {
     <div>
       <form className='locSearchBox'>
 
-        <input value={place} className="" placeholder="Search Location"
+        <input value={place} className="locSearchInput" placeholder="Search Location"
           onChange={changePlace}
           name="location"
         />

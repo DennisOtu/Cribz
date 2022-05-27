@@ -38,6 +38,13 @@ export default class ListingsController {
       return
     }
   }
+
+  static async apiGetCrib(req, res, next) {
+    const cribID = req.params.cribID
+    const crib = await ListingsDAO.getCrib(cribID)
+    res.json(crib)
+  }
+  
   
   static async apiGetBeds(req, res, next) {
     if (!isNaN(req.query.bedrooms)) {
@@ -53,6 +60,7 @@ export default class ListingsController {
       return
     }
   }
+
 
 }
 
