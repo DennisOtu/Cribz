@@ -2,7 +2,7 @@ import { Map, Marker } from 'pigeon-maps'
 import axios from 'axios'
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function ExploreComponent(props) {
   useEffect(() => refetch(props), [props.page])
