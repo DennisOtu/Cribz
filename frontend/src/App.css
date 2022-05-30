@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@500;800&family=Poppins:wght@200;400;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@300;500;800&family=Poppins:wght@200;400;500;900&display=swap');
 
 html{
   box-sizing: border-box;
@@ -253,16 +253,37 @@ body {
 }
 
 .detInfo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  letter-spacing: var(--letterSpaceSm);
-  margin-block: 1em;
+  margin-top: 1em;
   margin-left: 8em;
+}
+
+.showInterestDiv {
+  margin: 1em;
+  margin-right: 8em;
+  padding: 1em;
+  border-radius: 18px;
+  width: 100%;
+}
+
+.showInterestDiv div {
+  text-align: center;
+}
+
+.showInterestDiv form {
+  margin-bottom: 8px;
+}
+
+.showInterestDiv form input{
+  margin-top: 4px;
+  border: none;
+  height: 40px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .detMap {
   margin-left: 8em;
-  margin-block: 4em;
+  margin-bottom: 1em;
   height: 250px;
   width: 75%;
   padding: 3px;
@@ -273,6 +294,9 @@ body {
 
 .amenitiesDiv {
   margin-inline: 8em;
+  border: 1px solid var(--cribzGrey);
+  border-radius: 18px;
+  padding: 1em;
 
 }
 

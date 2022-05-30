@@ -25,7 +25,7 @@ function CribzNearby(props) {
                     <img src={crib.images.picture_url}></img>
                     <div className="container p-2 ">
                         <p>{crib.address.street.split(',', 1)}</p>
-                        <p style={{ fontSize: '12px' }}>Beds: {crib.bedrooms} Baths: {parseInt(crib.bathrooms.$numberDecimal)}</p>
+                        <p style={{ fontSize: '12px' }}>{crib.bedrooms} Beds, {parseInt(crib.bathrooms.$numberDecimal)} Bath(s)</p>
                     </div>
                     
                 </div>                    
