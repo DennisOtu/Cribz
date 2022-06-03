@@ -35,6 +35,21 @@ html{
   background-color: white;
 }
 
+.brandIcon {
+  height: 40px;
+  margin-right: 5px;
+}
+
+.brand {
+  font-family: var(--fontSerif);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--cribzYellow);
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.315);
+  text-decoration: none;
+  margin-left: 1em;
+}
+
 .navRight {
   width: 250px;
   display: flex;
@@ -47,9 +62,46 @@ html{
   justify-content: space-between;
 }
 
+.navRight div:hover{
+  font-weight: 500;
+}
+
 body {
   width: 100vw;
   height: 100vh;
+}
+
+.hero {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px;
+  background: url(./images/heroImage.jpg);
+  background-position: center;
+  background-size: cover;
+  align-items: center;
+  margin-inline: 1.5em;
+  margin-top: 46px;
+}
+
+.jumboText {
+  font-family: var(--fontSans);
+  font-size: 85px;
+  font-weight: 900;
+  color: var(--cribzYellow);
+  text-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
+}
+
+.index0, .index3{
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.index1, .index2 {
+  grid-column: span 1;
+  grid-row: span 1;
 }
 
 .fixedTopSearch {
@@ -71,48 +123,8 @@ body {
   box-shadow: 8px 8px 8px rgb(122, 122, 122);
 }
 
-.brand {
-  font-family: var(--fontSerif);
-  font-weight: 800;
-  font-size: 24px;
-  color: var(--cribzYellow);
-  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.315);
-}
-
-.brandIcon {
-  height: 40px;
-  margin-right: 5px;
-}
-
 .greySpace {
   background: var(--cribzGrey);
-}
-
-.hero {
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  border-radius: 10px;
-  background: url(./images/heroImage.jpg);
-  background-position: center;
-  background-size: cover;
-  align-items: center;
-  margin-inline: 16px;
-  margin-top: 46px;
-}
-
-.heroIcon {
-  height: 214px;
-}
-
-.jumboText {
-  font-family: var(--fontSans);
-  font-size: 90px;
-  font-weight: 900;
-  color: var(--cribzYellow);
-  text-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
 }
 
 .searchBox {
@@ -177,10 +189,9 @@ body {
 
 .locSearchInput::placeholder {
   color: white;
-  opacity: 0.7;
   font-style: italic;
   font-weight: 200;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .locSearchBox button {
@@ -246,7 +257,7 @@ body {
 }
 
 .detImg {
-  height: 350px;
+  height: 300px;
   border-radius: 10px;
   margin-top: 1em;
   margin-inline: 8em;
@@ -261,36 +272,40 @@ body {
   margin: 1em;
   margin-right: 8em;
   padding: 1em;
-  border-radius: 18px;
+  border-radius: 8px;
   width: 100%;
 }
 
-.showInterestDiv div {
-  text-align: center;
-}
-
-.showInterestDiv form {
-  margin-bottom: 8px;
-}
-
 .showInterestDiv form input{
-  margin-top: 4px;
+  padding: 4px;
+  margin-bottom: 8px;
   border: none;
   height: 40px;
-  border-radius: 5px;
+  border-radius: 8px;
   text-align: center;
+}
+
+.showInterestDiv form textarea{
+  padding: 4px;
+  border: none;
+  height: 100px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.showInterestDiv form button{
+  height: 40px;
 }
 
 .detMap {
-  margin-left: 8em;
+  margin-left: 8.5em;
+  margin-right: 1em;
   margin-bottom: 1em;
   height: 250px;
-  width: 75%;
-  padding: 3px;
-  border: 1px solid white;
-  border-radius: 10px;
+  padding: 4px;
+  border: 1px solid var(--cribzGrey);
+  border-radius: 18px;
 }
-
 
 .amenitiesDiv {
   margin-inline: 8em;
@@ -323,3 +338,4 @@ body {
   letter-spacing: var(--letterSpaceSm);
 
 }
+

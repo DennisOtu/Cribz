@@ -19,7 +19,7 @@ function CribzNearby(props) {
     return (
         <div>
             <div className="d-flex flex-row px-5 py-4">
-            {isLoading && <h2>Loading...</h2>}
+            {isLoading && <h6 style={{ textAlign: 'center', color: 'var(--textColor)' }}>Loading...</h6>}
             {data && data.data[0].data.map(crib => crib._id != props.exclude &&
                 <div className="searchCard m-2" onClick={ () => {showCrib(crib._id)} }>
                     <img src={crib.images.picture_url}></img>

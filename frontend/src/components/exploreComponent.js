@@ -20,35 +20,35 @@ function ExploreComponent(props) {
 
   return (
     <div className="d-flex flex-row mb-4 px-4" >
-        <div className="col-lg-6 d-flex flex-column">
-  
-          <div className="row" style={{ paddingTop: '125px' }}>
-            {isLoading && <h2>Loading...</h2>}
-            {data && data.data[0].data.map(crib =>
-              <div className="searchCard m-2">
+      <div className="col-lg-6 d-flex flex-column">
+
+        <div className="row" style={{ paddingTop: '125px' }}>
+          {isLoading && <h6 style={{ color: 'var(--textColor)' }}>Loading...</h6>}
+          {data && data.data[0].data.map(crib =>
+            <div className="searchCard m-2">
+              <Link style={{ textDecoration: 'none', color: 'inherit', borderRadius: 'inherit' }} to={`${crib._id}`}>
                 <img src={crib.images.picture_url}></img>
                 <div className="container p-2 ">
-                  <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`${crib._id}`}>
-                    <p>{crib.address.street.split(',', 1)}</p>
-                    <p style={{ fontSize: '12px' }}>Beds: {crib.bedrooms} Baths: {parseInt(crib.bathrooms.$numberDecimal)}</p>
-                  </Link>
-                </div>         
-              </div>              
-            )}
-          </div>
+                  <p>{crib.address.street.split(',', 1)}</p>
+                  <p style={{ fontSize: '12px' }}>Beds: {crib.bedrooms} Baths: {parseInt(crib.bathrooms.$numberDecimal)}</p>
+                </div>  
+              </Link> 
+            </div>              
+          )}
         </div>
-  
-  
-        {data && 
-          <div className='mapDiv'>
-            <Map center={ [ data.data[0].data[0].address.location.coordinates[1], data.data[0].data[0].address.location.coordinates[0] ] } defaultZoom={11} animate={true}>
-              {data.data[0].data.map(crib => <Marker width={50}
-                anchor={[crib.address.location.coordinates[1], crib.address.location.coordinates[0]]} />)
-              }
-            </Map>
-          </div>
-        }
-  </div> 
+      </div>
+
+      {data && 
+        <div className='mapDiv'>
+          <Map center={[data.data[0].data[0].address.location.coordinates[1], data.data[0].data[0].address.location.coordinates[0]]}
+            defaultZoom={11} animate={true}>
+            {data.data[0].data.map(crib => <Marker width={50}
+              anchor={[crib.address.location.coordinates[1], crib.address.location.coordinates[0]]} />)
+            }
+          </Map>
+        </div>
+      }
+    </div> 
   
   ) 
 }

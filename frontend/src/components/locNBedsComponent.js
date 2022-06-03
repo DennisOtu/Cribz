@@ -28,18 +28,17 @@ function LocNBedsComponent(props) {
       <div className="col-lg-6 d-flex flex-column">
 
         <div className="row" style={{ paddingTop: '125px' }}>
-          {isLoading && <h2>Loading...</h2>}
+          {isLoading && <h6 style={{ color: 'var(--textColor)' }}>Loading...</h6>}
           {data && data.data[0].data.map(crib =>
             <div className="searchCard col-md-5 m-2">
-              <img src={crib.images.picture_url}></img>
-              <div className="container p-2 ">
-                <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`${crib._id}`}>
+              <Link style={{ textDecoration: 'none', color: 'inherit', borderRadius: 'inherit' }} to={`../listings/compound/${crib._id}`} action='replace'>
+                <img src={crib.images.picture_url}></img>
+                <div className="container p-2 ">
                   <p>{crib.address.street.split(',', 1)}</p>
                   <p style={{ fontSize: '12px' }}>Beds: {crib.bedrooms} Baths: {parseInt(crib.bathrooms.$numberDecimal)}</p>
-                </Link>
                 
-              </div>
-              
+                </div>
+              </Link>              
             </div>
           )}
 
@@ -56,9 +55,7 @@ function LocNBedsComponent(props) {
           </Map>
         </div>
       }
-      
     </div> 
-    
   ) 
 }
 
