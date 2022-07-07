@@ -28,9 +28,9 @@ function ExploreComponent(props) {
             <div className="searchCard m-2">
               <Link style={{ textDecoration: 'none', color: 'inherit', borderRadius: 'inherit' }} to={`${crib._id}`}>
                 <img src={crib.images.picture_url}></img>
-                <div className="container p-2 ">
+                <div className="container px-1 pt-2 d-flex flex-row">
                   <p>{crib.address.street.split(',', 1)}</p>
-                  <p style={{ fontSize: '12px' }}>Beds: {crib.bedrooms} Baths: {parseInt(crib.bathrooms.$numberDecimal)}</p>
+                  <p style={{ fontSize: '12px', marginLeft: '2em'}}>Beds: {crib.bedrooms} Baths: {parseInt(crib.bathrooms.$numberDecimal)}</p>
                 </div>  
               </Link> 
             </div>              

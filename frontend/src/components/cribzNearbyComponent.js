@@ -18,14 +18,14 @@ function CribzNearby(props) {
     
     return (
         <div>
-            <div className="d-flex flex-row px-5 py-4">
+            <div className="d-flex flex-row px-5 py-5">
             {isLoading && <h6 style={{ textAlign: 'center', color: 'var(--textColor)' }}>Loading...</h6>}
             {data && data.data[0].data.map(crib => crib._id != props.exclude &&
                 <div className="searchCard m-2" onClick={ () => {showCrib(crib._id)} }>
                     <img src={crib.images.picture_url}></img>
-                    <div className="container p-2 ">
+                    <div className="container px-1 pt-2 d-flex flex-row">
                         <p>{crib.address.street.split(',', 1)}</p>
-                        <p style={{ fontSize: '12px' }}>{crib.bedrooms} Beds, {parseInt(crib.bathrooms.$numberDecimal)} Bath(s)</p>
+                        <p style={{ fontSize: '12px', marginLeft: '2em' }}>{crib.bedrooms} Beds, {parseInt(crib.bathrooms.$numberDecimal)} Bath(s)</p>
                     </div>
                     
                 </div>                    

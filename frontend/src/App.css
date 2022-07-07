@@ -19,6 +19,8 @@ html{
   --fontSans: 'Poppins', sans-serif;
   --cribzYellow: #ff8e0d;
   --cribzBlue: #337180;
+  --darkBlue: #094958;
+  --footerBlue: #003642;
   --cribzGrey: rgba(161, 142, 255, 0.39);
 }
 
@@ -77,12 +79,12 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 8px;
   background: url(./images/heroImage.jpg);
   background-position: center;
   background-size: cover;
   align-items: center;
-  margin-inline: 1.5em;
+  margin-inline: 6px;
   margin-top: 46px;
 }
 
@@ -94,14 +96,12 @@ body {
   text-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
 }
 
-.index0, .index3{
-  grid-column: span 1;
-  grid-row: span 2;
+.index0, .index2, .index4, .index5, .index9, .index11, .index12, .index13 {
+  grid-row: span 3;
 }
 
-.index1, .index2 {
-  grid-column: span 1;
-  grid-row: span 1;
+.index1, .index3, .index6, .index7, .index8, .index10, .index14, .index15 {
+  grid-row: span 2;
 }
 
 .fixedTopSearch {
@@ -112,14 +112,14 @@ body {
 }
 
 .mapDiv {
-  width: 630px;
-  height: 366px;
+  width: 49%;
+  height: 63%;
   border-radius: 10px;
   padding: 3px;
   border: 1px solid white;
   position: fixed;
   top: 23%;
-  left: 48%;
+  left: 50%;
   box-shadow: 8px 8px 8px rgb(122, 122, 122);
 }
 
@@ -148,6 +148,29 @@ body {
   font-size: 14px;
   color: white;
   background: var(--cribzBlue);
+}
+
+.butn:hover{
+  transform: translateY(-1px);
+  color: wheat;
+
+}
+
+.butnOutLine {
+  background: transparent;
+  border-radius: 8px;
+  padding-inline: 16px;
+  height: 34px;
+  border: 1px solid var(--cribzBlue);
+  font-family: var(--fontSans);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--cribzBlue);
+}
+
+.butnOutLine:hover{
+  background: var(--cribzBlue);
+  color: wheat;
 }
 
 .searchButn {
@@ -204,9 +227,9 @@ body {
 }
 
 .searchCard {
-  height: 36vh;
-  width: 40%;
-  border-radius: 10px;
+  height: 30vh;
+  width: 45%;
+  border-radius: 8px;
   border: 1px solid white;
   padding-inline: 0;
   font-family: var(--fontSans);
@@ -218,8 +241,8 @@ body {
 
 .searchCard img {
   width: 100%;
-  height: 63%;
-  border-radius: inherit;
+  height: 80%;
+  border-radius: 8px 8px 2px 2px;
   margin: 0;
 }
 
@@ -327,6 +350,8 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
+
+
 .reviewsDiv div {
   height: 60vh;
   margin: 1em;
@@ -339,3 +364,15 @@ body {
 
 }
 
+.outlineCard {
+  height: 60vh;
+  margin: 1em;
+  padding-block: 2em;
+  border: 1px solid rgba(255, 255, 255, 0.349);
+  padding-inline: 1.5em;
+  border-radius: 18px;
+  overflow: hidden;
+  background: transparent;
+  letter-spacing: var(--letterSpaceSm);
+
+}

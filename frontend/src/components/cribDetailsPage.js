@@ -14,7 +14,7 @@ function CribDetails() {
     const { data, isLoading } = useQuery('getDetails', findCrib)
 
     return (
-        <div style={{ paddingTop: '50px', marginBottom: '2em' }}>
+        <div style={{ paddingTop: '50px' }}>
             {isLoading && <h6 style={{ textAlign: 'center', color: 'var(--textColor)' }}>Loading...</h6>}
             {data &&
                 <div className="d-flex flex-column mx-4">
@@ -81,8 +81,8 @@ function CribDetails() {
 
             {data && 
                 <div>
-                    <h5 style={{textAlign: 'center', fontFamily: 'var(--fontSerif)', color: 'var(--textColor)'}}>Cribz Nearby</h5>
-                    <div className="my-3 greySpace">
+                    <h5 style={{textAlign: 'center', fontFamily: 'var(--fontSerif)', color: 'var(--textColor)', marginBlock: '2em'}}>Cribz Nearby</h5>
+                    <div className="greySpace">
                         <CribzNearby area={data.data[0].address.street.split(',', 1)} exclude={cribID}/>
                     </div>
                 </div>
