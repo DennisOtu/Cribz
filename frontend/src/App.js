@@ -12,7 +12,11 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import './App.css'
 import CribDetails from "./components/cribDetailsPage"
 import Footer from "./components/footer"
+import { library } from '@fortawesome/fontawesome-svg-core'
+import  { fab } from '@fortawesome/free-brands-svg-icons'
 
+library.add(fab)
+ 
 const queryClient = new QueryClient()
 
 class App extends Component {

@@ -5,6 +5,7 @@ import cribIcon from '../images/cribIcon.png'
 import { useQuery } from 'react-query'
 import axios from 'axios'
 import troubleFinding from '../images/troubleFinding.png'
+import { Link } from 'react-router-dom'
 
 function HomePage() {
   const [location, setLocation] = useState('')
@@ -41,17 +42,23 @@ function HomePage() {
             <div>
               <div style={{ margin: '6px',display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gridTemplateRows: 'repeat(10, 1fr)', gridGap: '6px', height: '200vh'}}>
                 {data.data[0].data.map((crib, index) =>
-                  <div className={`index${index}`} style={{  borderRadius: '8px',
-                    background: `url(${crib.images.picture_url})`, display: 'flex', flexDirection: 'column',
-                    justifyContent: 'center', textAlign: 'start'
-                  }} >
+                  <Link className={`index${index}`}
+                    style={{
+                      borderRadius: '8px',
+                      background: `url(${crib.images.picture_url})`,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      textAlign: 'start',
+                      textDecoration: 'none'
+                    }} to={`listings/compound/${crib._id}`} >
                     <p style={{
                       background: 'var(--textColor)', color: 'white', fontSize: '16px',
                       letterSpacing: 'var(--letterSpaceMd)', fontWeight: '200',
                       textTransform: 'lowercase', padding: '6px'
                     }}>{crib.name}</p>
                     
-                  </div>
+                  </Link>
                 )}
 
               </div>
@@ -59,8 +66,9 @@ function HomePage() {
                 <div className="col-lg-7 d-flex flex-column" style={{ alignItems: 'center', justifyContent: 'center', textAlign: 'center'}}>
                   <p style={{ fontFamily: 'var(--fontSans)', fontWeight: '300', color: 'var(--cribzYellow)', fontSize: '58px'}}>Trouble finding what you want?</p>
                   <p style={{ fontFamily: 'var(--fontSerif)', fontWeight: '300', color: 'var(--textColor)', fontSize: '24px'}}>Visit our search page to explore more listings</p>
-                  <button className="butnOutLine" style={{ width: '250px', marginTop: '2em'}}>More Cribz</button>
-
+                  <Link to="listings/compound">
+                    <button className="butnOutLine" style={{ width: '250px', marginTop: '2em' }}>More Cribz</button>
+                  </Link>
                 </div>
                 <div className="d-flex" style={{alignItems: 'center'}}><img src={troubleFinding} style={{ width: '100%',  marginBottom: '15%'}}/></div>
 
