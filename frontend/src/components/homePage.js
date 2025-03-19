@@ -1,31 +1,27 @@
 import LocationSearchBar from "./locationSearchBar"
-import { useState } from "react"
+import { useContext } from "react"
 import CompoundSearchPage from "./compoundSearchPage"
 import cribIcon from '../images/cribIcon.png'
 import { useQuery } from 'react-query'
 import axios from 'axios'
 import troubleFinding from '../images/troubleFinding.png'
 import { Link } from 'react-router-dom'
+import { searchContext } from "../contexts/searchContext.js"
 
 function HomePage() {
-  const [location, setLocation] = useState('')
-  const bedrooms = ''
-  const [finding, setFinding] = useState(false)
+  const { state }  = useContext(searchContext)
   const randomPage = Math.ceil(Math.random() * 15)
+  
+  
   const findRandom = () => {
     return axios.get(`http://localhost:8000/api/v1/listings?page=${randomPage}&limit=16`)
   }  
   const { data, isLoading } = useQuery('exploreRandom', findRandom)
-
-  function initSearch(place) {
-    setLocation(place)
-    setFinding(true)
-  }
   
-  if (finding) {
+  if (state.startSearch === true) {
     return (
       <div>
-        <CompoundSearchPage location={location} bedrooms={bedrooms} locSearch={true} />
+		<CompoundSearchPage />
       </div>
     )
   } else {
@@ -34,7 +30,7 @@ function HomePage() {
         <div className="hero">
           <img src={cribIcon} style={{height: '200px'}}/>
           <h1 className="jumboText">Find your dream home</h1>
-          <LocationSearchBar location={location} initSearch={initSearch}/>
+          <LocationSearchBar />
         </div> 
         <div>
           {isLoading && <h6 style={{ textAlign: 'center', color: 'var(--textColor)' }}>Loading...</h6>}        
@@ -51,7 +47,7 @@ function HomePage() {
                       justifyContent: 'center',
                       textAlign: 'start',
                       textDecoration: 'none'
-                    }} to={`listings/compound/${crib._id}`} >
+                    }} to={`listings/${crib._id}`} >
                     <p style={{
                       background: 'var(--textColor)', color: 'white', fontSize: '16px',
                       letterSpacing: 'var(--letterSpaceMd)', fontWeight: '200',
@@ -73,11 +69,11 @@ function HomePage() {
                 <div className="d-flex" style={{alignItems: 'center'}}><img src={troubleFinding} style={{ width: '100%',  marginBottom: '15%'}}/></div>
 
               </div>
-              <div style={{ background: 'var(--darkBlue)', color: 'rgba(255, 255, 255, 0.7)', paddingBlock: '3em', margin: '0'}}>
-                <h5 className="text-center mb-4" style={{ fontFamily: 'var(--fontSerif)', color: 'wheat'}}>Customer Reviews</h5>
+              <div style={{ color: 'var(--darkBlue)', paddingBlock: '3em', margin: '0'}}>
+                <h5 className="text-center mb-4" style={{ fontFamily: 'var(--fontSerif)', color: 'var(--darkBlue)'}}>Customer Reviews</h5>
                 <div style={{  marginInline: '8em',  display: 'grid',  gridTemplateColumns: 'repeat(3, 1fr)'}}>
                   <div className="outlineCard">
-                    <h6 style={{color:'white'}}>Customer 1</h6>
+                    <h6 style={{color:'darkBlue'}}>Customer 1</h6>
                     <p style={{fontSize: '12px', fontFamily: 'var(--fontSerif)'}}>07-2022</p>
                     <p style={{  fontSize: '14px' }}>Curabitur at leo sit amet tortor consectetur tempus.
                       Etiam purus urna, pulvinar ac placerat sit amet, lobortis nec tortor. Fusce diam dolor,
@@ -85,7 +81,7 @@ function HomePage() {
                     </p>
                   </div>
                   <div className="outlineCard">
-                    <h6 style={{ color: 'white' }}>Customer 2</h6>
+                    <h6 style={{ color: 'darkBlue' }}>Customer 2</h6>
                     <p style={{fontSize: '12px', fontFamily: 'var(--fontSerif)'}}>07-2022</p>
                     <p style={{  fontSize: '14px' }}>Nullam blandit velit a efficitur venenatis.
                       In sed metus tincidunt, lobortis velit non, tincidunt velit. Pellentesque dui quam,
@@ -93,28 +89,28 @@ function HomePage() {
                     </p>
                   </div>
                   <div className="outlineCard">
-                    <h6 style={{ color: 'white' }}>Customer 3</h6>
+                    <h6 style={{ color: 'darkBlue' }}>Customer 3</h6>
                     <p style={{fontSize: '12px', fontFamily: 'var(--fontSerif)'}}>07-2022</p>
                     <p style={{  fontSize: '14px' }}>Vestibulum sollicitudin, felis et commodo blandit,
                       libero lacus mollis turpis, a laoreet augue augue a dui. Mauris ac tempus elit. Vivamus mattis mi ex.
                     </p>
                   </div>
                   <div className="outlineCard">
-                    <h6 style={{ color: 'white' }}>Customer 4</h6>
+                    <h6 style={{ color: 'darkBlue' }}>Customer 4</h6>
                     <p style={{fontSize: '12px', fontFamily: 'var(--fontSerif)'}}>06-2022</p>
                     <p style={{  fontSize: '14px' }}>Duis non erat ante. Fusce lacinia mauris nisl,
                       faucibus semper odio vulputate vel. Morbi eleifend orci ut pellentesque auctor
                     </p>
                   </div>
                   <div className="outlineCard">
-                    <h6 style={{ color: 'white' }}>Customer 5</h6>
+                    <h6 style={{ color: 'darkBlue' }}>Customer 5</h6>
                     <p style={{fontSize: '12px', fontFamily: 'var(--fontSerif)'}}>06-2022</p>
                     <p style={{  fontSize: '14px' }}>Donec mattis, augue non sollicitudin pharetra,
                       nunc sem consequat tortor, ligula.
                     </p>
                   </div>
                   <div className="outlineCard">
-                    <h6 style={{ color: 'white' }}>Customer 6</h6>
+                    <h6 style={{ color: 'darkBlue' }}>Customer 6</h6>
                     <p style={{fontSize: '12px', fontFamily: 'var(--fontSerif)'}}>05-2022</p>
                     <p style={{  fontSize: '14px' }}>Vivamus orci arcu, rhoncus vitae augue et,
                       porttitor accumsan eros. Maecenas ultricies, ipsum eu molestie malesuada, ante nulla rhoncus quam, at ultricies

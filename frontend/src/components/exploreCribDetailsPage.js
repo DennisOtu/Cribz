@@ -4,11 +4,11 @@ import axios from "axios"
 import { Map, Marker } from 'pigeon-maps'
 //import CribzNearby from "./cribzNearbyComponent"
 
-function CribDetails() {
+function ExploreCribDetails() {
     const { cribID } = useParams()
  
     const findCrib = () => {
-        return axios.get(`http://localhost:8000/api/v1/listings/compound/${cribID}`)
+        return axios.get(`http://localhost:8000/api/v1/listings/${cribID}`)
     }
 
     const { data, isLoading } = useQuery('getDetails', findCrib)
@@ -85,17 +85,15 @@ function CribDetails() {
 
             {data && 
                 <h6 style={{ textAlign: 'center'}}>CRIBZ NEARBY</h6>
-            
-                //<div>
-                  //  <h5 style={{textAlign: 'center', fontFamily: 'var(--fontSerif)', color: 'var(--textColor)', marginBlock: '2em'}}>Cribz Nearby</h5>
-                    //<div className="greySpace">
-                      //  <CribzNearby area={data.data[0].address.street.split(',', 1)} exclude={cribID}/>
-                    //</div>
-                //</div> 
+                /*<div>
+                    <h5 style={{textAlign: 'center', fontFamily: 'var(--fontSerif)', color: 'var(--textColor)', marginBlock: '2em'}}>Cribz Nearby</h5>
+                    <div className="greySpace">
+                        <CribzNearby area={data.data[0].address.street.split(',', 1)} exclude={cribID}/>
+                    </div>
+                </div>*/
             }
-
         </div>
     )
 }
 
-export default CribDetails
+export default ExploreCribDetails

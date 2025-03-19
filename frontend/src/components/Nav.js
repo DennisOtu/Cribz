@@ -1,34 +1,37 @@
 import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import cribIcon from '../images/cribIcon.png'
+import { useContext } from 'react'
+import { searchContext } from '../contexts/searchContext.js'
 
 const Navbar = () => {
+	const { state, dispatch } = useContext(searchContext)
 
   return (
     <nav className="navBar">
       <div className="brand" >
-        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to="/" onClick={()=>dispatch({type: 'goHome' }) } style={{ textDecoration: 'none', color: 'inherit' }}>
           <img src={cribIcon} className="brandIcon" />
-          Cribz
+          CRIBZ
         </Link>
       </div>
 
       <div className="navRight" >
         <div>
-          <Link to="listings/compound" style={{ textDecoration: 'none', color: 'inherit' }}>
-            Search Cribz
+          <Link to="listings/compound" onClick={()=>dispatch({type: 'setExploreTrue'})} style={{ textDecoration: 'none', color: 'inherit' }}>
+            SEARCH
           </Link>
         </div>
 
         <div>
           <Link to="" style={{ textDecoration: 'none', color: 'inherit' }}>
-            Sign Up
+            SIGN UP
           </Link>
         </div>
 
         <div>
           <Link to="" style={{ textDecoration: 'none', color: 'inherit' }}>
-            Log In
+            LOG IN
           </Link>
         </div>
       </div>

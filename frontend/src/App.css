@@ -21,7 +21,8 @@ html{
   --cribzBlue: #337180;
   --darkBlue: #094958;
   --footerBlue: #003642;
-  --cribzGrey: rgba(161, 142, 255, 0.39);
+  --lightGrey: #eeeded;
+  --darkGrey: grey;
 }
 
 .navBar {
@@ -29,7 +30,7 @@ html{
   top: 0; 
   width: 100%;
   z-index: 9999;
-  height: 45px;
+  height: 3em;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -38,7 +39,7 @@ html{
 }
 
 .brandIcon {
-  height: 40px;
+  height: 2em;
   margin-right: 5px;
 }
 
@@ -53,19 +54,31 @@ html{
 }
 
 .navRight {
-  width: 250px;
-  display: flex;
-  align-items: center;
+  width: 33%;
+  height: 3em;
   margin-left: auto;
-  margin-right: 4em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2%;
+  margin-right: 1em;
   font-family: var(--fontSans);
-  font-weight: 400;
+  color: var(--textColor);
   font-size: 14px;
-  justify-content: space-between;
+  text-align: center;
 }
 
-.navRight div:hover{
-  font-weight: 500;
+.navRight div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navRight div:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--darkBlue);
+  border-radius: 12px;
+  background: var(--lightGrey);
 }
 
 body {
@@ -79,12 +92,12 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  border-radius: 8px;
+  /*border-radius: 8px;*/
   background: url(./images/heroImage.jpg);
   background-position: center;
   background-size: cover;
   align-items: center;
-  margin-inline: 6px;
+  /*margin-inline: 6px;*/
   margin-top: 46px;
 }
 
@@ -112,23 +125,24 @@ body {
 }
 
 .mapDiv {
-  width: 49%;
-  height: 63%;
+  width: 35%;
+  height: 60%;
   border-radius: 10px;
   padding: 3px;
   border: 1px solid white;
   position: fixed;
   top: 23%;
-  left: 50%;
+  left: 63%;
   box-shadow: 4px 4px 4px rgb(122, 122, 122);
 }
 
 .greySpace {
-  background: var(--cribzGrey);
+  /*background: var(--darkGrey);*/
+  background: gray;
 }
 
 .searchBox {
-  border: 0;
+  border: solid black 1px;
   border-radius: 25px;
   height: 35px;
   width: 200px;
@@ -174,8 +188,8 @@ body {
 }
 
 .searchButn {
-  height: 35px;
-  width: 35px;
+  height: 40px;
+  width: 40px;
   border-radius: 15px;
   border: none;
   background: transparent;
@@ -200,7 +214,7 @@ body {
 
 .locSearchBox input {
   background: transparent;
-  border: 0;
+  border: none;
   border-radius: inherit;
   outline: none;
   width: 100%;
@@ -228,7 +242,7 @@ body {
 
 .searchCard {
   height: 30vh;
-  width: 45%;
+  width: 40%;
   border-radius: 8px;
   border: 1px solid white;
   padding-inline: 0;
@@ -279,11 +293,60 @@ body {
   border-radius: 20px;
 }
 
-.detImg {
+.imgBoxParent {
   height: 300px;
   border-radius: 10px;
   margin-top: 1em;
-  margin-inline: 8em;
+  margin-inline: 6em;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  grid-template-rows: 1fr 1fr;
+  gap: 0.4em;
+  overflow: hidden;
+}
+
+.imgBoxChild1 {
+  grid-column: 1/span 6;
+  grid-row: 1/span 2;
+  outline: solid black 1px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.imgBoxChild1 img {
+  height: 100%;
+  width: 100%;
+  /*object-fit: cover;*/
+  /*overflow: hidden;*/
+}
+
+.imgBoxChild2 {
+  grid-column: 7/ span 2;
+  grid-row: 1;
+  outline: solid black 1px;
+  border-radius: 0px 10px 0px 0px;
+  overflow: hidden;
+}
+
+.imgBoxChild2 img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.imgBoxChild3 {
+  grid-column: 7/ span 2;
+  grid-row: 2;
+  outline: solid black 1px;
+  border-radius: 0px 0px 10px 0px;
+  overflow: hidden;
+}
+
+.imgBoxChild3 img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .detInfo {
@@ -295,6 +358,7 @@ body {
   margin: 1em;
   margin-right: 8em;
   padding: 1em;
+  border: solid black 1px;
   border-radius: 8px;
   width: 100%;
 }
@@ -302,7 +366,7 @@ body {
 .showInterestDiv form input{
   padding: 4px;
   margin-bottom: 8px;
-  border: none;
+  border: solid black 1px;
   height: 40px;
   border-radius: 8px;
   text-align: center;
@@ -310,8 +374,8 @@ body {
 
 .showInterestDiv form textarea{
   padding: 4px;
-  border: none;
   height: 100px;
+  border: solid black 1px;
   border-radius: 8px;
   font-size: 16px;
 }
@@ -326,13 +390,13 @@ body {
   margin-bottom: 1em;
   height: 250px;
   padding: 4px;
-  border: 1px solid var(--cribzGrey);
+  border: 1px solid var(--darkGrey);
   border-radius: 18px;
 }
 
 .amenitiesDiv {
   margin-inline: 8em;
-  border: 1px solid var(--cribzGrey);
+  border: 1px solid var(--darkGrey);
   border-radius: 18px;
   padding: 1em;
 
@@ -357,9 +421,9 @@ body {
   margin: 1em;
   padding-block: 2em;
   padding-inline: 1.5em;
+  border: solid black 1px;
   border-radius: 18px;
   overflow: hidden;
-  background: var(--cribzGrey);
   letter-spacing: var(--letterSpaceSm);
 
 }
@@ -368,7 +432,7 @@ body {
   height: 60vh;
   margin: 1em;
   padding-block: 2em;
-  border: 1px solid rgba(255, 255, 255, 0.349);
+  border: 1px solid var(--cribzBlue);
   padding-inline: 1.5em;
   border-radius: 18px;
   overflow: hidden;

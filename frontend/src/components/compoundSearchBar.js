@@ -1,35 +1,27 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import searchIcon from '../images/searchIcon.png'
+import { searchContext } from "../contexts/searchContext.js"
+import { Link } from 'react-router-dom'
 
-function CompoundSearchBar(props) {
-  const [place, setPlace] = useState('')
-  const [beds, setBeds] = useState('')
-
-  const changePlace = (e) => {
-    setPlace(e.target.value)
-  }
-
-  const changeBeds = (e) => {
-    setBeds(e.target.value)
-  }
+function CompoundSearchBar() {
+  const { state, dispatch } = useContext(searchContext)
 
   return (
     <div className="d-flex flex-row fixedTopSearch">
       <div>
         <div className="container d-flex flex-row">
-          <button onClick={()=>props.allCribz()} className="butn">
+          <button onClick={()=>dispatch({type: 'setExploreTrue'})} className="butn">
             Explore
           </button>
           <div className="form-group">
-            <input value={place} className="searchBox form-field mx-3" placeholder={props.location? `${props.location}` : "All locations"}
-              onChange={changePlace}
+            <input value={state.newLocation} className="searchBox form-field mx-3" placeholder={state.newLocation? `${state.newLocation}` : "Any location"}
+              onChange={(e)=>dispatch({type: 'setNewLocation', payload: e.target.value})}
               name="location"
             />
           </div>
 
           <div>
-              <select className='searchBox' value={beds} onChange={changeBeds}>
-                <option value=''>All Beds</option>
+              <select className='searchBox' value={state.newBedrooms} onChange={(e)=>dispatch({type: 'setNewBedrooms', payload: e.target.value}) }>
                 <option value='1'> 1 </option>
                 <option value='2'> 2 </option>
                 <option value='3'> 3 </option>
@@ -42,7 +34,7 @@ function CompoundSearchBar(props) {
               </select>
           </div> 
         
-          <button onClick={()=>props.initSearch(place, beds)} className="searchButn mx-3"><img src={ searchIcon } className='searchIcon'/></button>
+          <button onClick={()=> dispatch({type: 'initSearch'})} className="searchButn mx-3"><img src={ searchIcon } className='searchIcon'/></button>
         </div>
         </div>
     </div>
