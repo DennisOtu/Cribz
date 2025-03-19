@@ -6,24 +6,31 @@ const Navbar = () => {
 
   return (
     <nav className="navBar">
-      
-      <Link to="/" className="brand mr-4 nav-link">
-      <img src={cribIcon} className="brandIcon" />
-        Cribz
-      </Link>
+      <div className="brand" >
+        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <img src={cribIcon} className="brandIcon" />
+          Cribz
+        </Link>
+      </div>
 
       <div className="navRight" >
-        <Link to="listings/compound" style={{ textDecoration: 'none', color: 'var(--fontColor)' }}>
-          Search Cribz
-        </Link>
+        <div>
+          <Link to="listings/compound" style={{ textDecoration: 'none', color: 'inherit' }}>
+            Search Cribz
+          </Link>
+        </div>
 
-        <Link to="" style={{ textDecoration: 'none', color: 'var(--fontColor)' }}>
-          Sign Up
-        </Link>
+        <div>
+          <Link to="" style={{ textDecoration: 'none', color: 'inherit' }}>
+            Sign Up
+          </Link>
+        </div>
 
-        <Link to="" style={{ textDecoration: 'none', color: 'var(--fontColor)' }}>
-          Log In
-        </Link>
+        <div>
+          <Link to="" style={{ textDecoration: 'none', color: 'inherit' }}>
+            Log In
+          </Link>
+        </div>
       </div>
     
 
