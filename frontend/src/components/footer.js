@@ -9,7 +9,7 @@ const Footer = () => {
             display: 'flex', flex: 'row', justifyContent: 'space-between'
         }}>
             <div className="d-flex flex-column col-lg-3">
-                <p style={{fontFamily: 'var(--fontSerif)', color: 'var(--cribzYellow)', fontSize: '14px'}}>Cribz</p>
+                <p style={{fontFamily: 'var(--fontSerif)', color: 'var(--cribzYellow)', fontSize: '14px'}}>CRIBZ</p>
                 <p style={{fontSize: '14px', marginTop: '2em', color: 'rgba(255, 255, 255, 0.7)'}}>Praesent tincidunt posuere dolor, nec bibendum tellus suscipit a.
                     Nullam pellentesque felis id porttitor scelerisque.
                 </p>

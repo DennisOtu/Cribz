@@ -1,26 +1,29 @@
 import { Map, Marker } from 'pigeon-maps'
 import axios from 'axios'
 import { useQuery } from 'react-query'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { searchContext } from "../contexts/searchContext.js"
 
-function ExploreComponent(props) {
-  useEffect(() => refetch(props), [props.page])
+function ExploreComponent() {
+  const { state, dispatch } = useContext(searchContext)
+
+  useEffect(() => refetch(), [state.page])
 
   const exploreCribz = () => {
-    return axios.get(`http://localhost:8000/api/v1/listings?page=${props.page}`)
+    return axios.get(`http://localhost:8000/api/v1/listings?page=${state.page}`)
   }
   
   const { data, isLoading, refetch } = useQuery('exploreAll', exploreCribz)
   
   if (data) {
     const totalCribz = data.data[0].metadata[0].total
-    props.paginateData(totalCribz)
+    //paginateData(totalCribz)
   }
 
   return (
-    <div className="d-flex flex-row mb-4 px-4" >
-      <div className="col-lg-6 d-flex flex-column">
+    <div className="d-flex flex-row mb-4">
+      <div className="col-lg-8 d-flex flex-column">
 
         <div className="row" style={{ paddingTop: '125px' }}>
           {isLoading && <h6 style={{ color: 'var(--textColor)' }}>Loading...</h6>}

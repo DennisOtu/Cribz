@@ -7,6 +7,7 @@ router.route('/location').get(ListingsCtrl.apiGetLocation)
 router.route('/bedrooms').get(ListingsCtrl.apiGetBeds)
 router.route('/compound').get(ListingsCtrl.apiCompound)
 router.route('/compound/:cribID').get(ListingsCtrl.apiGetCrib)
+router.route('/:cribID').get(ListingsCtrl.apiGetCrib)
 
 export default router
 

@@ -1,32 +1,29 @@
 import { Map, Marker } from 'pigeon-maps'
 import axios from 'axios'
 import { useQuery } from 'react-query'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
+import { searchContext } from "../contexts/searchContext.js"
 
-function LocNBedsComponent(props) {
-  useEffect(() => refetch(props), [props.page])
+function LocNBedsComponent() {
+	const { state, dispatch } = useContext(searchContext)
+
+  useEffect(() => refetch(), [state.searchLocation, state.bedrooms])
     
   const findCribz = () => {
-    if (props.location && props.bedrooms) {
-      return axios.get(`http://localhost:8000/api/v1/listings/compound?location=${props.location}&bedrooms=${props.bedrooms}&page=${props.page}`)
-    }
-    if (!props.bedrooms) {
-      return axios.get(`http://localhost:8000/api/v1/listings/location?location=${props.location}&page=${props.page}`)
-    }
+    return axios.get(`http://localhost:8000/api/v1/listings/compound?location=${state.searchLocation}&bedrooms=${state.bedrooms}&page=${state.page}`)
   }
   
   const { data, isLoading, refetch } = useQuery('find', findCribz)
 
-  if (data) {
+/*  if (data) {
     const totalCribz = data.data[0].metadata[0].total
-    props.paginateData(totalCribz)
-  }
+    paginateData(totalCribz)
+  }*/
   
   return (
     <div className="d-flex flex-row mb-4 px-4">
       <div className="col-lg-6 d-flex flex-column">
-
         <div className="row" style={{ paddingTop: '125px' }}>
           {isLoading && <h6 style={{ color: 'var(--textColor)' }}>Loading...</h6>}
           {data && data.data[0].data.map(crib =>

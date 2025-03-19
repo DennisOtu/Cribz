@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 let listings
+
 export default class ListingsDAO {
   static async injectDB(conn) {
     if (listings) {
@@ -54,42 +55,42 @@ export default class ListingsDAO {
 
       return list
     } catch (e) {
-      console.error(`Unable to get listings, ${e}`);
+      console.error(`Cannot find Cribz, ${e}`);
     }
   }
 
   static async getLocation(limit, location, pageNum) {
     if (location) {
-      console.log(`Query.location : ${location}`)
+      console.log(`Query.location : ${location} (getLoc dao)`)
+      console.log(`query.limit : ${limit} (getLoc dao)`)
+
       try {
         const page = pageNum - 1
+        const numToParse = limit * page
+        const numToSkip = parseInt(numToParse)
+
         const allListings = await listings.aggregate(
           [
             {
               $search: {
-                index: 'location',
+                index: "location",
                 text: {
                   query: location,
                   path: {
-                    'wildcard': '*'
+                    wildcard: "*"
                   }
                 }
-              }
-            },
-            
-            {
-              $facet: {
-                metadata: [{ $count: 'total' }],
-                data: [{ $skip: limit * page }, { $limit: limit }]
               }
             }
           ]
         )
-        const startIndex = (limit * page)
-        const endIndex = (limit * page) + limit
+
+        const startIndex = (numToSkip)
+        const endIndex = (numToSkip) + limit
       
-        //const cursor = allListings.skip(limit * page).limit(limit)
+        //const cursor = allListings.skip(numToSkip).limit(limit)
         const list = await allListings.toArray()
+        /*
         const total = list[0].metadata[0].total
 
         console.log(`Data retrieved (getLocation), total: ${total} items`)
@@ -108,16 +109,43 @@ export default class ListingsDAO {
           console.log('nextPage: true')
         } else {
           console.log('nextPage: false')
-        }
+        }*/
+        
 
         return list 
-        } catch (e) {
-          console.error(`Unable to get listings, ${e}`);
-        }
+      } catch (e) {
+        console.error(`Cannot find Cribz (dao.getLocation), ${e}`);
+      }
+    } else {
+      console.log('no query entered(dao)')
+    }
+  }
+
+  /*static async getLocation(limit, location, pageNum) {
+    if (location) {
+      console.log(`Query.location : ${location} (getLoc dao)`)
+      console.log(`query.limit : ${limit} (getLoc dao)`)
+
+      try {
+        //const page = pageNum - 1
+        //const numToParse = limit * page
+        //const numToSkip = parseInt(numToParse)
+
+        const allListings = await listings.find({ 'address.street' : location })
+
+        //const startIndex = (numToSkip)
+        //const endIndex = (numToSkip) + limit
+      
+        //const cursor = allListings.skip(numToSkip).limit(limit)
+        const list = await allListings.toArray()
+        return list 
+      } catch (e) {
+        console.error(`Cannot find Cribz (dao.getLocation), ${e}`);
+      }
     } else {
       console.log('no query entered')
     }
-  }
+  }*/
 
   static async compound(limit, location, beds, pageNum) {
     if (location && beds) {
@@ -171,7 +199,7 @@ export default class ListingsDAO {
 
         return list
       } catch (e) {
-        console.error(`Unable to get listings, ${e}`);
+        console.error(`Cannot find Cribz, ${e}`);
       }
     } else {
       console.log('no query entered')
@@ -200,6 +228,7 @@ export default class ListingsDAO {
     if (beds) {
       console.log(`query.beds : ${beds} (dao)`)
         try {
+          const page = pageNum - 1
           const allListings = await listings.find({ 'bedrooms': beds })
 
           const total = await allListings.count()
@@ -215,7 +244,7 @@ export default class ListingsDAO {
           console.log(`${list.length} items per page`)
           return list  
         } catch (e) {
-          console.error(`Unable to get listings, ${e}`);
+          console.error(`Cannot find Cribz, ${e}`);
         }
     } else {
       console.log('no query entered')
