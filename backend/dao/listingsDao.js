@@ -231,20 +231,20 @@ export default class ListingsDAO {
           const page = pageNum - 1
           const allListings = await listings.find({ 'bedrooms': beds })
 
-          const total = await allListings.count()
+          //const total = await allListings.count()
     
           console.log('data retrieved (getBeds)')
 
           const startIndex = (limit * page)
           const endIndex = (limit * page) + limit
-          const cursor = allListings.skip(limit * page).limit(limit)
-          const list = await cursor.toArray()
-
+          //const cursor = allListings.skip(limit * page).limit(limit)
+          const list = await allListings.toArray()
+		  const total = list[0].metadata[0].total
           console.log(`start Index = ${startIndex}, end Index = ${endIndex}`)
           console.log(`${list.length} items per page`)
           return list  
-        } catch (e) {
-          console.error(`Cannot find Cribz, ${e}`);
+        } catch (error) {
+          console.error(`Cannot find Cribz, ${error}`);
         }
     } else {
       console.log('no query entered')
