@@ -1,4 +1,3 @@
-
 import ListingsDAO from '../dao/listingsDao.js'
 
 export default class ListingsController {
@@ -41,8 +40,7 @@ export default class ListingsController {
       //console.log(`query.location: ${location}, query.beds: ${beds} (controller)`)
       const list = await ListingsDAO.compound(limit, location, beds, pageNum)
       res.json(list)
-	}
-
+	} 
   }
 
   static async apiGetCrib(req, res, next) {
@@ -57,7 +55,6 @@ export default class ListingsController {
       const limit = req.query.limit ? parseInt(req.query.limit) : parseInt(20)
       const beds = parseInt(req.query.bedrooms)
       const pageNum = req.query.page ? parseInt(req.query.page) : parseInt(1)
-
       console.log(`query.beds : ${beds} (controller)`)
       const list = await ListingsDAO.getBeds(limit, beds, pageNum)
       res.json(list)
@@ -66,7 +63,5 @@ export default class ListingsController {
       return
     }
   }
-
-
 }
 
