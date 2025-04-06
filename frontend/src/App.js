@@ -3,12 +3,12 @@ import { Routes, Route, Link } from "react-router-dom"
 //import "bootstrap/dist/css/bootstrap.min.css"
 import HomePage from "./components/homePage"
 import Navbar from "./components/Nav"
-import CompoundSearch from "./components/compoundSearchPage"
+import CompoundSearchPage from "./components/compoundSearchPage"
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import './App.css'
-import CribDetails from "./components/cribDetailsPage"
-import ExploreCribDetails from "./components/exploreCribDetailsPage"
+import CribDetailsPage from "./components/cribDetailsPage"
+import ExploreCribDetailsPage from "./components/exploreCribDetailsPage"
 import Footer from "./components/footer"
 import { library } from '@fortawesome/fontawesome-svg-core'
 import  { fab } from '@fortawesome/free-brands-svg-icons'
@@ -33,9 +33,9 @@ function App() {
 					<Navbar/>
 					<Routes>
 						<Route path='/' element={<HomePage/>}/>
-						<Route path='listings/:cribID' element={<ExploreCribDetails/>}/>
-						<Route path='listings/compound' element={<CompoundSearch/>} />
-						<Route path='listings/compound/:cribID' element={<CribDetails/>}/>
+						<Route path='listings/:cribID' element={<ExploreCribDetailsPage/>}/>
+						<Route path='listings/compound' element={<CompoundSearchPage/>}/>
+						<Route path='listings/compound/:cribID' element={<CribDetailsPage/>}/>
 
 					</Routes>
 					<Footer/>
