@@ -14,6 +14,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import  { fab } from '@fortawesome/free-brands-svg-icons'
 import { searchContext } from "./contexts/searchContext.js"
 import { searchReducer, initialState } from "./searchReducer.js"
+import SignupPage from "./components/signupPage.js"
+import LoginPage from "./components/loginPage.js"
 
 library.add(fab)
 
@@ -36,7 +38,8 @@ function App() {
 						<Route path='listings/:cribID' element={<ExploreCribDetailsPage/>}/>
 						<Route path='listings/compound' element={<CompoundSearchPage/>}/>
 						<Route path='listings/compound/:cribID' element={<CribDetailsPage/>}/>
-
+						<Route path='/signup' element={<SignupPage/>}/>
+						<Route path= '/login' element={<LoginPage/>}/>
 					</Routes>
 					<Footer/>
 				</searchContext.Provider>

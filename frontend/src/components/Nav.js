@@ -24,13 +24,13 @@ const Navbar = () => {
         </div>
 
         <div>
-          <Link to="" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to="/signup" style={{ textDecoration: 'none', color: 'inherit' }}>
             SIGN UP
           </Link>
         </div>
 
         <div>
-          <Link to="" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
             LOG IN
           </Link>
         </div>
