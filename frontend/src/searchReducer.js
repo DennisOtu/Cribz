@@ -1,4 +1,4 @@
-export const initialState = {
+export const initSearchState = {
 	searchLocation: '',
 	bedrooms: 1,
 	newLocation: '',

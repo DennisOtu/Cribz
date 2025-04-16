@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom'
 import { searchContext } from "../contexts/searchContext.js"
 
 function ExploreComponent() {
-  const { state, dispatch } = useContext(searchContext)
+  const { searchState, searchDispatch } = useContext(searchContext)
 
-  useEffect(() => refetch(), [state.page])
+  useEffect(() => refetch(), [searchState.page])
 
   const exploreCribz = () => {
-    return axios.get(`http://localhost:8000/api/v1/listings?page=${state.page}`)
+    return axios.get(`http://localhost:8000/api/v1/listings?page=${searchState.page}`)
   }
   
   const { data, isLoading, refetch } = useQuery('exploreAll', exploreCribz)

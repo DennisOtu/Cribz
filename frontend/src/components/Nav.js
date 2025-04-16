@@ -5,12 +5,12 @@ import { useContext } from 'react'
 import { searchContext } from '../contexts/searchContext.js'
 
 const Navbar = () => {
-	const { state, dispatch } = useContext(searchContext)
+	const { searchState, searchDispatch } = useContext(searchContext)
 
   return (
     <nav className="navBar">
       <div className="brand" >
-        <Link to="/" onClick={()=>dispatch({type: 'goHome' }) } style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to="/" onClick={()=>searchDispatch({type: 'goHome' }) } style={{ textDecoration: 'none', color: 'inherit' }}>
           <img src={cribIcon} className="brandIcon" />
           CRIBZ
         </Link>
@@ -18,7 +18,7 @@ const Navbar = () => {
 
       <div className="navRight" >
         <div>
-          <Link to="listings/compound" onClick={()=>dispatch({type: 'setExploreTrue'})} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to="listings/compound" onClick={()=>searchDispatch({type: 'setExploreTrue'})} style={{ textDecoration: 'none', color: 'inherit' }}>
             SEARCH
           </Link>
         </div>

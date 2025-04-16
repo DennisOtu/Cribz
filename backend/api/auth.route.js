@@ -3,8 +3,7 @@ import * as authCtrl from './auth.controller.js'
 
 const router = express.Router()
 
-router.route('/signup').get(authCtrl.signUpGet)
-router.route('/signup').post(authCtrl.signUpPost)
+router.route('/signup').post(authCtrl.signUp)
 router.route('/login').get(authCtrl.login)
 router.route('/logout').post(authCtrl.logout)
 

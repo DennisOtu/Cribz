@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { searchContext } from "../contexts/searchContext.js"
 
 function HomePage() {
-  const { state }  = useContext(searchContext)
+  const { searchState }  = useContext(searchContext)
   const randomPage = Math.ceil(Math.random() * 15)
   
   
@@ -18,7 +18,7 @@ function HomePage() {
   }  
   const { data, isLoading } = useQuery('exploreRandom', findRandom)
   
-  if (state.startSearch === true) {
+  if (searchState.startSearch === true) {
     return (
       <div>
 		<CompoundSearchPage />

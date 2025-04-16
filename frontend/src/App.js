@@ -13,7 +13,7 @@ import Footer from "./components/footer"
 import { library } from '@fortawesome/fontawesome-svg-core'
 import  { fab } from '@fortawesome/free-brands-svg-icons'
 import { searchContext } from "./contexts/searchContext.js"
-import { searchReducer, initialState } from "./searchReducer.js"
+import { searchReducer, initSearchState } from "./searchReducer.js"
 import SignupPage from "./components/signupPage.js"
 import LoginPage from "./components/loginPage.js"
 
@@ -22,7 +22,7 @@ library.add(fab)
 const queryClient = new QueryClient()
 
 function App() {
-  const [state, dispatch] = useReducer(searchReducer, initialState)
+  const [searchState, searchDispatch] = useReducer(searchReducer, initSearchState)
   //const [page, setPage] = useState(1)
   //const [pageCount, setPageCount] = useState(0)
   //const [paginate, setPaginate] = useState(false)
@@ -31,7 +31,7 @@ function App() {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<div className='App'>
-				<searchContext.Provider value={{state, dispatch}}>
+				<searchContext.Provider value={{searchState, searchDispatch}}>
 					<Navbar/>
 					<Routes>
 						<Route path='/' element={<HomePage/>}/>
