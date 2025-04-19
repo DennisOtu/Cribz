@@ -16,10 +16,11 @@ function SignupPage() {
 			});
 			const data = await res.json()
 			if (data.user) {
+				console.log('signup successful')
+				console.log(data)
 				window.location.assign('/')
 			}
-			console.log('signup successful')
-			console.log(data)
+
 		}
 		catch (error) {
 			console.log(error)
