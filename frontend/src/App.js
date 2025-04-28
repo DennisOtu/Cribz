@@ -2,7 +2,7 @@ import React, { Component, createContext, useState, useReducer } from "react"
 import { Routes, Route, Link } from "react-router-dom"
 //import "bootstrap/dist/css/bootstrap.min.css"
 import HomePage from "./components/homePage"
-import Navbar from "./components/Nav"
+import Navbar from "./components/Navbar"
 import CompoundSearchPage from "./components/compoundSearchPage"
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'

@@ -11,8 +11,7 @@ import { searchContext } from "../contexts/searchContext.js"
 function HomePage() {
   const { searchState }  = useContext(searchContext)
   const randomPage = Math.ceil(Math.random() * 15)
-  
-  
+
   const findRandom = () => {
     return axios.get(`http://localhost:8000/api/v1/listings?page=${randomPage}&limit=16`)
   }  

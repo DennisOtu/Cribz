@@ -6,24 +6,25 @@ import jwt from 'jsonwebtoken'
 dotenv.config()
 
 // create json web token
-const maxAge = 24 * 60 * 60; //one day calculated in seconds
+//const maxAge = 24 * 60 * 60; //one day calculated in seconds
 
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.STR_SECRET, {
-    expiresIn: maxAge
+    expiresIn: '1d'
   });
 };
 
 export const signUp = async (req, res) => {
-	const { email, password } = req.body
+	const { firstName, lastName, email, password } = req.body
 	try{
 		const conn = await mongoose.connect(process.env.DB_URI, { dbName: 'sample_airbnb' })
 		if (conn) {
-			const user = await User.create({ email, password})
+			const user = await User.create({ firstName, lastName, email, password})
+			const userName = user.firstName
 			const token = createToken(user._id);
-			res.cookie('login_info', token, { httpOnly: true });
-			res.status(201).json({ user: user._id })
-			console.log(`new user signup: ${ user.email }`)
+			//res.cookie('login_info', token, { httpOnly: true });
+			res.status(201).json({ userName, token })
+			console.log(`new user signup: ${ user.firstName } ` + `${ user.lastName }`)
 			mongoose.connection.close()
 		}
 	}
@@ -39,10 +40,11 @@ export const login = async (req, res) => {
 		const conn = await mongoose.connect(process.env.DB_URI, { dbName: 'sample_airbnb' })
 		if (conn) {
 			const user = await User.login(email, password)
+			const userName = user.firstName
 			const token = createToken(user._id);
-			res.cookie('login_info', token, { httpOnly: true });
-			res.status(200).json({ user: user._id })
-			console.log(`user login: ${ user.email }`)
+			//res.cookie('login_info', token, { httpOnly: true })
+			res.status(200).json({ userName, token })
+			console.log(`user login: ${ user.firstName } ` + `${ user.lastName }`)
 			mongoose.connection.close()
 		}
 	}
@@ -52,8 +54,5 @@ export const login = async (req, res) => {
 	}
 }
 
-export const logout = (req, res) => {
-	res.send('logout test')
-}
 
 

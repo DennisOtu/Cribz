@@ -6,8 +6,11 @@ function LoginPage () {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+
+
 		const email = mailRef.current.value
 		const password = passRef.current.value
+
 		try {
 			const res = await fetch('http://localhost:8000/api/v1/auth/login', { 
 				method: 'POST', 
@@ -16,9 +19,8 @@ function LoginPage () {
 				credentials: 'include'
 			})
 			const data = await res.json()
-			if (data.user) {
-				console.log('login successful')
-				console.log(data)
+			if (data) {
+				localStorage.setItem('user', JSON.stringify(data))
 				window.location.assign('/')
 			}
 		}
