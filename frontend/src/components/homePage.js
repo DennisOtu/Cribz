@@ -9,16 +9,15 @@ import { Link } from 'react-router-dom'
 import { searchContext } from "../contexts/searchContext.js"
 
 function HomePage() {
-  const { state }  = useContext(searchContext)
+  const { searchState }  = useContext(searchContext)
   const randomPage = Math.ceil(Math.random() * 15)
-  
-  
+
   const findRandom = () => {
     return axios.get(`http://localhost:8000/api/v1/listings?page=${randomPage}&limit=16`)
   }  
   const { data, isLoading } = useQuery('exploreRandom', findRandom)
   
-  if (state.startSearch === true) {
+  if (searchState.startSearch === true) {
     return (
       <div>
 		<CompoundSearchPage />

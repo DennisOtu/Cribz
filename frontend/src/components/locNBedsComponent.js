@@ -6,12 +6,12 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import { searchContext } from "../contexts/searchContext.js"
 
 function LocNBedsComponent() {
-	const { state, dispatch } = useContext(searchContext)
+	const { searchState, searchDispatch } = useContext(searchContext)
 
-  useEffect(() => refetch(), [state.searchLocation, state.bedrooms])
+  useEffect(() => refetch(), [searchState.searchLocation, searchState.bedrooms])
     
   const findCribz = () => {
-    return axios.get(`http://localhost:8000/api/v1/listings/compound?location=${state.searchLocation}&bedrooms=${state.bedrooms}&page=${state.page}`)
+    return axios.get(`http://localhost:8000/api/v1/listings/compound?location=${searchState.searchLocation}&bedrooms=${searchState.bedrooms}&page=${searchState.page}`)
   }
   
   const { data, isLoading, refetch } = useQuery('find', findCribz)

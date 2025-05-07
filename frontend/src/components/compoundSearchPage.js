@@ -7,9 +7,9 @@ import ReactPaginate from "react-paginate"
 import { searchContext } from "../contexts/searchContext.js"
 
 function CompoundSearchPage() {
-  const { state, dispatch } = useContext(searchContext)
+  const { searchState, searchDispatch } = useContext(searchContext)
 
-	if (state.explore === true) {
+	if (searchState.explore === true) {
 	  return (
 		<div className="greySpace">
 		  <CompoundSearchBar />
