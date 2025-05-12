@@ -47,7 +47,7 @@ function CribDetails() {
                                     value={`I am interested in "${data.data[0].name}" in ${data.data[0].address.street.split(',').slice(0, 1)}`}
                                     onChange={''}
                                 />
-                                <button className="butn mt-2" onClick={''}>Submit</button>
+                                <button className="butnPill mt-2" onClick={''}>Submit</button>
                             </form>
                         </div>
 

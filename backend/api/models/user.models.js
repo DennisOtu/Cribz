@@ -30,16 +30,15 @@ UserSchema.pre('save', async function (next){
 })
 
 UserSchema.statics.login = async function (email, password) {
-	const user = await this.findOne({ email })
-	if (user) {
-		const isAuth = await bcrypt.compare(password, user.password)
-		if (isAuth) {
+	try{
+		const user = await this.findOne({ email })
+		const match = await bcrypt.compare(password, user.password)
+		if (match && user.firstName) {
 			return user
-		} else {
-			throw Error('incorrect password')
 		}
-	} else {
-		throw Error('incorrect email')
+	}
+	catch (error) {
+		console.log(error)
 	}
 }
 

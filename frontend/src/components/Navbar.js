@@ -7,37 +7,38 @@ import axios from 'axios'
 
 const Navbar = () => {
 	const { searchState, searchDispatch } = useContext(searchContext)
-	const loginInfo = JSON.parse(localStorage.getItem('user'))
-	
+	const userInfo = JSON.parse(localStorage.getItem('user'))
+
 	const handleLogout = () => {
 		localStorage.removeItem('user')
 		window.location.reload()
 	}
 
-	if (loginInfo) {
+	if (!userInfo) {
 		return (
 		<nav className="navBar">
 		  <div className="brand" >
 			<Link to="/" onClick={()=>searchDispatch({type: 'goHome' }) } style={{ textDecoration: 'none', color: 'inherit' }}>
 			  <img src={cribIcon} className="brandIcon" />
-			  CRIBZ
+			  Cribz
 			</Link>
 		  </div>
-
-				<p style={{ marginLeft: '8rem' }}>
-					Hello { loginInfo.userName }
-				</p>
-
 			<div className="navRight" >
 				<div>
 				  <Link to="listings/compound" onClick={()=>searchDispatch({type: 'setExploreTrue'})} style={{ textDecoration: 'none', color: 'inherit' }}>
-					SEARCH
+					Search
 				  </Link>
 				</div>
 
 				<div>
-				  <Link to="" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleLogout}>
-					LOGOUT
+				  <Link to="/signup" style={{ textDecoration: 'none', color: 'inherit' }}>
+					Sign Up
+				  </Link>
+				</div>
+
+				<div>
+				  <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
+					Log In
 				  </Link>
 				</div>
 			</div>
@@ -49,27 +50,25 @@ const Navbar = () => {
 		  <div className="brand" >
 			<Link to="/" onClick={()=>searchDispatch({type: 'goHome' }) } style={{ textDecoration: 'none', color: 'inherit' }}>
 			  <img src={cribIcon} className="brandIcon" />
-			  CRIBZ
+			  Cribz
 			</Link>
 		  </div>
 			<div className="navRight" >
 				<div>
 				  <Link to="listings/compound" onClick={()=>searchDispatch({type: 'setExploreTrue'})} style={{ textDecoration: 'none', color: 'inherit' }}>
-					SEARCH
+					Search
 				  </Link>
 				</div>
 
 				<div>
-				  <Link to="/signup" style={{ textDecoration: 'none', color: 'inherit' }}>
-					SIGN UP
+				  <Link to="" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleLogout}>
+					Log Out
 				  </Link>
 				</div>
 
-				<div>
-				  <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-					LOGIN
-				  </Link>
-				</div>
+				<h6 style={{ color: 'var(--cribzYellow)' }}>
+					 Hi { userInfo.userName }!
+				</h6>
 			</div>
 		</nav>
 		)

@@ -17,12 +17,16 @@ html{
   --letterSpaceLg: 0.4em;
   --fontSerif: 'Roboto Serif', serif;
   --fontSans: 'Poppins', sans-serif;
-  --cribzYellow: #ff8e0d;
+  --darkYellow: #ff8e0d;
+  --lightYellow: wheat;
   --cribzBlue: #337180;
   --darkBlue: #094958;
   --footerBlue: #003642;
   --lightGrey: #eeeded;
+  --lightGreen: #1aac83;
+  --darkGreen: #159470;
   --darkGrey: grey;
+  --searchBarBackground: rgba(92, 90, 90, 0.726);
 }
 
 .navBar {
@@ -47,7 +51,7 @@ html{
   font-family: var(--fontSerif);
   font-weight: 800;
   font-size: 20px;
-  color: var(--cribzYellow);
+  color: var(--cribzBlue);
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.315);
   text-decoration: none;
   margin-left: 1em;
@@ -57,10 +61,10 @@ html{
   width: 33%;
   height: 3em;
   margin-left: auto;
+  margin-right: 1em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 2%;
-  margin-right: 1em;
   font-family: var(--fontSans);
   color: var(--textColor);
   font-size: 14px;
@@ -76,7 +80,7 @@ html{
 .navRight div:hover {
   cursor: pointer;
   font-weight: bold;
-  color: var(--darkBlue);
+  color: var(--cribzBlue);
   border-radius: 12px;
   background: var(--lightGrey);
 }
@@ -105,7 +109,7 @@ body {
   font-family: var(--fontSans);
   font-size: 85px;
   font-weight: 900;
-  color: var(--cribzYellow);
+  color: var(--darkYellow);
   text-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -125,15 +129,15 @@ body {
 }
 
 .mapDiv {
-  width: 35%;
-  height: 60%;
-  border-radius: 10px;
+  width: 50vw;
+  height: 88vh;
+  border-radius: 5px;
   padding: 3px;
   border: 1px solid white;
   position: fixed;
-  top: 23%;
-  left: 63%;
-  box-shadow: 4px 4px 4px rgb(122, 122, 122);
+  top: 50px;
+  left: 47%;
+  box-shadow: 4px 4px 8px rgb(122, 122, 122);
 }
 
 .greySpace {
@@ -141,68 +145,109 @@ body {
   background: lightGrey;
 }
 
-.searchBox {
-  border: 1px;
-  border-radius: 25px;
+.searchInputLocation {
+	border: none;
+  border-right: 1px solid white;
   height: 35px;
   width: 200px;
   text-align: center;
   font-family: var(--fontSans);
   font-size: 14px;
   color: var(--textColor);
+  background: var(--searchBarBackground);
+  color: white;
 }
 
-.butn {
-  border-radius: 8px;
+.searchInputLocation::placeholder {
+	font-style: italic;
+	color: white;
+	font-weight: 200;
+}
+
+.searchInputLocation:hover {
+	cursor: text;
+}
+
+.searchInputBedrooms {
+  height: 35px;
+  width: 200px;
+  text-align: center;
+  font-family: var(--fontSans);
+  font-size: 14px;
+  color: var(--textColor);
+  background: var(--searchBarBackground);
+  color: white;
+}
+
+.searchInputBedrooms:hover {
+	cursor: pointer;
+}
+
+.butnPill {
+	border-radius: 2rem;
   padding-inline: 16px;
-  height: 34px;
+  height: 35px;
   border: none;
   font-family: var(--fontSans);
   font-weight: 200;
   font-size: 14px;
   color: white;
-  background: var(--cribzBlue);
+  background: var(--lightGreen);
 }
 
-.butn:hover{
-  transform: translateY(-1px);
-  color: wheat;
-
+.butnPill:hover {
+	background: var(--darkGreen)
 }
 
-.butnOutLine {
-  background: transparent;
+.leftPill {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.butn {
+  background: var(--lightGreen);
   border-radius: 8px;
   padding-inline: 16px;
-  height: 34px;
-  border: 1px solid var(--cribzBlue);
+  height: 35px;
+  border: none;
   font-family: var(--fontSans);
   font-weight: 400;
   font-size: 14px;
-  color: var(--cribzBlue);
+  color: white;
 }
 
-.butnOutLine:hover{
-  background: var(--cribzBlue);
-  color: wheat;
+.butn:hover {
+	background: var(--darkGreen);
+}
+
+
+.searchIcon {
+  height: 1.5rem;
+}
+
+.locSearchBar {
+	display: flex;
 }
 
 .searchButn {
-  height: 40px;
-  width: 40px;
-  border-radius: 15px;
-  border: none;
-  background: transparent;
-}
-
-.searchIcon {
   height: 35px;
+  width: 40px;
+  border: none;
+  border-left: 1px solid white;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  background: var(--searchBarBackground);
 }
 
-.locSearchBox {
-  height: 45px;
-  width: 515px;
-  border-radius: 25px;
+.searchButn:hover {
+	background: rgba(70, 68, 69, 0.83);
+}
+
+.locSearchBar form {
+	height: 35px;
+	width: 515px;
+	border-top-left-radius: 2rem;
+	border-bottom-left-radius: 2rem;
   background: rgba(92, 90, 90, 0.726);
   font-family: var(--fontSans);
   font-size: 14px;
@@ -210,9 +255,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 
-.locSearchBox input {
+.locSearchBar input {
   background: transparent;
   border: none;
   border-radius: inherit;
@@ -224,45 +270,43 @@ body {
   color: white;
 }
 
-.locSearchInput::placeholder {
+.locSearchBar input::placeholder {
   color: white;
   font-style: italic;
   font-weight: 200;
   font-size: 14px;
 }
 
-.locSearchBox button {
-  background: transparent;
-  border-radius: 25px;
-  width: 50px;
-  height: 50px;
-  border: 0;
-  margin-right: 0;
-}
-
 .searchCard {
-  height: 30vh;
-  width: 40%;
-  border-radius: 8px;
-  border: 1px solid white;
-  padding-inline: 0;
+	padding: 0;
+	margin: 3px;
+  height: 36vh;
+  width: 33%;
+  border-radius: 5px;
   font-family: var(--fontSans);
   font-size: 14px;
   letter-spacing: var(--letterSpaceSm);
   background: rgba(255, 255, 255, 0.801);
+  box-shadow: 2px 2px 2px rgb(156, 156, 156);
   color: var(--textColor);
+  overflow: hidden;
 }
 
 .searchCard img {
   width: 100%;
-  height: 80%;
-  border-radius: 8px 8px 2px 2px;
+  height: 66%;
+  border-radius: 5px 5px 0px 0px;
   margin: 0;
+}
+
+.searchCard div {
+	height: 40%;
+	overflow: hidden;
 }
 
 .searchCard:hover {
   background: rgb(255, 255, 255);
-  box-shadow: 2px 2px 2px rgb(156, 156, 156);
+  box-shadow: 4px 4px 4px rgb(156, 156, 156);
   cursor: pointer;
   color: black;
 }

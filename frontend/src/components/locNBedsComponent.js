@@ -23,19 +23,21 @@ function LocNBedsComponent() {
   
   return (
     <div className="d-flex flex-row mb-4 px-4">
-      <div className="col-lg-6 d-flex flex-column">
-        <div className="row" style={{ paddingTop: '125px' }}>
+      <div className="col-lg-8 d-flex flex-column">
+        <div className="row" style={{ paddingTop: '50px' }}>
           {isLoading && <h6 style={{ color: 'var(--textColor)' }}>Loading...</h6>}
           {data && data.data[0].data.map(crib =>
-            <div className="searchCard col-md-5 m-2">
+            <div className="searchCard">
               <Link style={{ textDecoration: 'none', color: 'inherit', borderRadius: 'inherit' }} to={`../listings/compound/${crib._id}`} action='replace'>
                 <img src={crib.images.picture_url}></img>
-                <div className="container px-1 pt-2 d-flex flex-row">
-                  <p>{crib.address.street.split(',', 1)}</p>
-                  <p style={{ fontSize: '12px', marginLeft: '2em' }}>Beds: {crib.bedrooms} Baths: {parseInt(crib.bathrooms.$numberDecimal)}</p>
-                
+                <div className="container d-flex flex-column m-0 p-1">
+				  <ul style={{ listStyleType: 'none', padding: 0, overflow: 'hidden' }}>
+					<li style={{ fontWeight: 'bold', fontSize: '14px' }}>${crib.price.$numberDecimal}</li>
+					<li style={{ fontSize: '12px' }}>{crib.bedrooms}bds | {parseInt(crib.bathrooms.$numberDecimal)}ba | {crib.property_type}</li>
+					<li style={{ fontSize: '12px', fontWeight: '300' }}>{crib.address.street.split(',', 1)}, {crib.address.country}</li>
+				  </ul>
                 </div>
-              </Link>              
+              </Link> 
             </div>
           )}
 
