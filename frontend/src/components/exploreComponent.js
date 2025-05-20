@@ -52,25 +52,25 @@ function ExploreComponent() {
 				</div>              
 			  )}
 			</div>
-		<ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={searchState.pageCount}
-		onPageChange={changePage} pageRangeDisplayed={3} containerClassName={"paginationDiv"} previousLinkClassName={"previousBttn"}
-		nextLinkClassName={"nextBttn"} disabledClassName={"paginationDisabled"} activeClassName={"paginationActive"}
-		renderOnZeroPageCount={null}
-		/>
+			<ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={searchState.pageCount}
+			onPageChange={changePage} pageRangeDisplayed={3} containerClassName={"paginationDiv"} previousLinkClassName={"previousBttn"}
+			nextLinkClassName={"nextBttn"} disabledClassName={"paginationDisabled"} activeClassName={"paginationActive"}
+			renderOnZeroPageCount={null}
+			/>
+
         <div style={{
-            height: '50vh', width: '100%', background: 'var(--darkBlue)',
-            color: 'white', paddingTop: '4em', paddingInline: '4em', margin: 0,
+            height: '50vh', width: '100%', color: 'var(--darkBlue)', paddingTop: '4em', paddingInline: '4em', margin: 0,
             display: 'flex', flex: 'row', justifyContent: 'space-between', width: 'inherit'
         }}>
             <div className="d-flex flex-column col-lg-3">
-                <p style={{fontFamily: 'var(--fontSerif)', color: 'var(--cribzYellow)', fontSize: '14px'}}>Cribz</p>
-                <p style={{fontSize: '14px', marginTop: '2em', color: 'rgba(255, 255, 255, 0.7)'}}>Praesent tincidunt posuere dolor, nec bibendum tellus suscipit a.
-                    Nullam pellentesque felis id porttitor scelerisque.
+                <p style={{fontFamily: 'var(--fontSerif)', fontSize: '14px'}}>Cribz</p>
+                <p style={{fontSize: '14px', marginTop: '2em'}}>Praesent tincidunt posuere dolor, nec bibendum tellus suscipit a.
+                    Nullam pellentesque.
                 </p>
             </div>
             <div>
                 <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>Discover</p>
-                <div style={{marginTop: '3em', fontSize: '12px', color: 'rgba(255, 255, 255, 0.7)'}}>
+                <div style={{marginTop: '3em', fontSize: '12px'}}>
                     <p>Home</p>
                     <p>About Us</p>
                     <p>Services</p>
@@ -80,7 +80,7 @@ function ExploreComponent() {
             </div>
             <div>
                 <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>About</p>
-                <div style={{marginTop: '3em', fontSize: '12px', color: 'rgba(255, 255, 255, 0.7)'}}>
+                <div style={{marginTop: '3em', fontSize: '12px'}}>
                     <p>Clients</p>
                     <p>Teams</p>
                     <p>Career</p>
@@ -88,7 +88,7 @@ function ExploreComponent() {
             </div>
             <div>
                 <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>Help</p>
-                <div style={{marginTop: '3em', fontSize: '12px', color: 'rgba(255, 255, 255, 0.7)'}}>
+                <div style={{marginTop: '3em', fontSize: '12px'}}>
                     <p>Privacy Policy</p>
                     <p>Terms And Conditions</p>
                     <p>Partners</p>

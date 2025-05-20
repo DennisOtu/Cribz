@@ -84,7 +84,7 @@ function CribDetails() {
             }
 
             {data && 
-                <h6 style={{ textAlign: 'center'}}>CRIBZ NEARBY</h6>
+                <h6 style={{ textAlign: 'center'}}></h6>
             
                 //<div>
                   //  <h5 style={{textAlign: 'center', fontFamily: 'var(--fontSerif)', color: 'var(--textColor)', marginBlock: '2em'}}>Cribz Nearby</h5>

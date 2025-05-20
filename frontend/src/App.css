@@ -147,6 +147,7 @@ body {
 .searchInputLocation {
 	border: none;
   border-right: 1px solid white;
+  border-radius: 0;
   height: 35px;
   width: 200px;
   text-align: center;
@@ -351,7 +352,7 @@ body {
 .imgBoxChild1 {
   grid-column: 1/span 6;
   grid-row: 1/span 2;
-  outline: solid black 1px;
+  outline: solid var(--lightGrey) 1px;
   border-radius: 10px 0px 0px 10px;
 }
 
@@ -365,7 +366,7 @@ body {
 .imgBoxChild2 {
   grid-column: 7/ span 2;
   grid-row: 1;
-  outline: solid black 1px;
+  outline: solid var(--lightGrey) 1px;
   border-radius: 0px 10px 0px 0px;
   overflow: hidden;
 }
@@ -380,7 +381,7 @@ body {
 .imgBoxChild3 {
   grid-column: 7/ span 2;
   grid-row: 2;
-  outline: solid black 1px;
+  outline: solid var(--lightGrey) 1px;
   border-radius: 0px 0px 10px 0px;
   overflow: hidden;
 }
@@ -401,7 +402,7 @@ body {
   margin: 1em;
   margin-right: 8em;
   padding: 1em;
-  border: solid black 1px;
+  border: solid var(--lightGrey) 1px;
   border-radius: 8px;
   width: 100%;
 }
@@ -409,7 +410,7 @@ body {
 .showInterestDiv form input{
   padding: 4px;
   margin-bottom: 8px;
-  border: solid black 1px;
+  border: solid var(--lightGrey) 1px;
   height: 40px;
   border-radius: 8px;
   text-align: center;
@@ -418,7 +419,7 @@ body {
 .showInterestDiv form textarea{
   padding: 4px;
   height: 100px;
-  border: solid black 1px;
+  border: solid var(--lightGrey) 1px;
   border-radius: 8px;
   font-size: 16px;
 }
@@ -433,13 +434,13 @@ body {
   margin-bottom: 1em;
   height: 250px;
   padding: 4px;
-  border: 1px solid var(--darkGrey);
+  border: 1px solid var(--lightGrey);
   border-radius: 18px;
 }
 
 .amenitiesDiv {
   margin-inline: 8em;
-  border: 1px solid var(--darkGrey);
+  border: 1px solid var(--lightGrey);
   border-radius: 18px;
   padding: 1em;
 
@@ -464,7 +465,7 @@ body {
   margin: 1em;
   padding-block: 2em;
   padding-inline: 1.5em;
-  border: solid black 1px;
+  border: solid var(--lightGrey) 1px;
   border-radius: 18px;
   overflow: hidden;
   letter-spacing: var(--letterSpaceSm);
@@ -475,7 +476,7 @@ body {
   height: 60vh;
   margin: 1em;
   padding-block: 2em;
-  border: 1px solid var(--cribzBlue);
+  border: 1px solid var(--lightGrey);
   padding-inline: 1.5em;
   border-radius: 18px;
   overflow: hidden;

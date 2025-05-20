@@ -5,6 +5,7 @@ import { useEffect, useContext } from 'react'
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import { searchContext } from "../contexts/searchContext.js"
 import ReactPaginate from "react-paginate"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function LocNBedsComponent() {
 	const { searchState, searchDispatch } = useContext(searchContext)
@@ -49,11 +50,57 @@ function LocNBedsComponent() {
 				</div>
 			  )}
 			</div>
-		<ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={searchState.pageCount}
-		onPageChange={changePage} pageRangeDisplayed={3} containerClassName={"paginationDiv"} previousLinkClassName={"previousBttn"}
-		nextLinkClassName={"nextBttn"} disabledClassName={"paginationDisabled"} activeClassName={"paginationActive"}
-		renderOnZeroPageCount={null}
-		/>
+			<ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={searchState.pageCount}
+			onPageChange={changePage} pageRangeDisplayed={3} containerClassName={"paginationDiv"} previousLinkClassName={"previousBttn"}
+			nextLinkClassName={"nextBttn"} disabledClassName={"paginationDisabled"} activeClassName={"paginationActive"}
+			renderOnZeroPageCount={null}
+			/>
+        <div style={{
+            height: '50vh', width: '100%', color: 'var(--darkBlue)', paddingTop: '4em', paddingInline: '4em', margin: 0,
+            display: 'flex', flex: 'row', justifyContent: 'space-between', width: 'inherit'
+        }}>
+            <div className="d-flex flex-column col-lg-3">
+                <p style={{fontFamily: 'var(--fontSerif)', fontSize: '14px'}}>Cribz</p>
+                <p style={{fontSize: '14px', marginTop: '2em'}}>Praesent tincidunt posuere dolor, nec bibendum tellus suscipit a.
+                    Nullam pellentesque.
+                </p>
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>Discover</p>
+                <div style={{marginTop: '3em', fontSize: '12px'}}>
+                    <p>Home</p>
+                    <p>About Us</p>
+                    <p>Services</p>
+                    <p>Contact</p>
+                </div>
+
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>About</p>
+                <div style={{marginTop: '3em', fontSize: '12px'}}>
+                    <p>Clients</p>
+                    <p>Teams</p>
+                    <p>Career</p>
+                </div>
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>Help</p>
+                <div style={{marginTop: '3em', fontSize: '12px'}}>
+                    <p>Privacy Policy</p>
+                    <p>Terms And Conditions</p>
+                    <p>Partners</p>
+                </div>
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>Follow Us</p>
+                <div style={{marginTop: '2em'}}>
+                    <FontAwesomeIcon icon={['fab', 'twitter']} />
+                    <FontAwesomeIcon icon={['fab', 'instagram']} style={{ marginInline: '1em'}}/>
+                    <FontAwesomeIcon icon={['fab', 'facebook']}  />
+                </div>
+
+            </div>
+        </div>
 		</div>
 
 
