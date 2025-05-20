@@ -5,8 +5,8 @@ const Footer = () => {
     return (
         <div style={{
             height: '50vh', background: 'var(--darkBlue)',
-            color: 'white', paddingTop: '4em', paddingInline: '4em',
-            display: 'flex', flex: 'row', justifyContent: 'space-between'
+            color: 'white', paddingTop: '4em', paddingInline: '4em', margin: 0,
+            display: 'flex', flex: 'row', justifyContent: 'space-between', width: 'inherit'
         }}>
             <div className="d-flex flex-column col-lg-3">
                 <p style={{fontFamily: 'var(--fontSerif)', color: 'var(--cribzYellow)', fontSize: '14px'}}>Cribz</p>

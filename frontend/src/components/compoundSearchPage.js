@@ -8,18 +8,20 @@ import { searchContext } from "../contexts/searchContext.js"
 
 function CompoundSearchPage() {
   const { searchState, searchDispatch } = useContext(searchContext)
+  
+	const changePage = (e) => {
+		const newPage = e.selected
+		searchDispatch({type: 'changePage', payload: newPage})
+	}
 
 	if (searchState.explore === true) {
 	  return (
 		<div className="greySpace">
 		  <CompoundSearchBar />
 		  <ExploreComponent />
+
 		</div>
-		  /*<ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={pageCount}
-		  onPageChange={changePage} pageRangeDisplayed={5} containerClassName={"paginationDiv"} previousLinkClassName={"previousBttn"}
-		  nextLinkClassName={"nextBttn"} disabledClassName={"paginationDisabled"} activeClassName={"paginationActive"}
-		  renderOnZeroPageCount={null}
-		  />*/
+
 	  )
 	} else {
 		return (
@@ -27,8 +29,8 @@ function CompoundSearchPage() {
 			  <CompoundSearchBar />
 			  <LocNBedsComponent />
 			</div>
-			  /*<ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={pageCount}
-			  onPageChange={changePage} pageRangeDisplayed={5} containerClassName={"paginationDiv"} previousLinkClassName={"previousBttn"}
+			  /*<ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={searchState.pageCount}
+			  onPageChange={(e)} pageRangeDisplayed={5} containerClassName={"paginationDiv"} previousLinkClassName={"previousBttn"}
 			  nextLinkClassName={"nextBttn"} disabledClassName={"paginationDisabled"} activeClassName={"paginationActive"}
 			  renderOnZeroPageCount={null}
 			  />*/

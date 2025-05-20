@@ -129,13 +129,12 @@ body {
 }
 
 .mapDiv {
-  width: 50vw;
-  height: 88vh;
+  width: 52vw;
+  height: 92%;
   border-radius: 5px;
-  padding: 3px;
   border: 1px solid white;
   position: fixed;
-  top: 50px;
+  top: 53px;
   left: 47%;
   box-shadow: 4px 4px 8px rgb(122, 122, 122);
 }
@@ -333,7 +332,7 @@ body {
 
 .paginationActive a {
   padding-inline: 1em;
-  background-color: var(--cribzYellow);
+  background-color: var(--darkYellow);
   border-radius: 20px;
 }
 

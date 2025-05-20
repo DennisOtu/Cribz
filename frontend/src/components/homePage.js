@@ -7,6 +7,7 @@ import axios from 'axios'
 import troubleFinding from '../images/troubleFinding.png'
 import { Link } from 'react-router-dom'
 import { searchContext } from "../contexts/searchContext.js"
+import Footer from './footer.js'
 
 function HomePage() {
   const { searchState }  = useContext(searchContext)
@@ -124,7 +125,8 @@ function HomePage() {
             </div>
           }
         </div>
-       
+   	  <Footer />
+
       </div>
     )
   }

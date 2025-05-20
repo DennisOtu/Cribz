@@ -29,6 +29,10 @@ export const searchReducer = (state, action) => {
 			return {...state, explore: state.explore = false}
 		case 'setExploreTrue':
 			return {...state, explore: state.explore = true, newLocation: state.newLocation = '', bedrooms: state.bedrooms = 1}
+		case 'changePage':
+			return {...state, page: state.page = action.payload}
+		case 'updatePageCount':
+			return {...state, pageCount: state.pageCount = action.payload}
 		default:
 			throw new Error()
 	}
