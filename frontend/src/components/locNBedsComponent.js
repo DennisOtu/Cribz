@@ -9,26 +9,25 @@ import ReactPaginate from "react-paginate"
 function LocNBedsComponent() {
 	const { searchState, searchDispatch } = useContext(searchContext)
 
+  const findCribz = () => {
+    return axios.get(`http://localhost:8000/api/v1/listings/compound?location=${searchState.searchLocation}&bedrooms=${searchState.bedrooms}&page=${searchState.page}`)
+  }
+  
+  const { data, isLoading, refetch } = useQuery('find', findCribz)
+  
 	useEffect(() =>{  
 		if (data) {
 			const totalCribz = data.data[0].metadata[0].total
 			const totalPages = Math.ceil(totalCribz / 20)
 			searchDispatch({type: 'updatePageCount', payload : totalPages})
 		}
-	},[searchState.pageCount])
-
+	},[searchState.pageCount, searchState.page])
+	
 	const changePage = (e) => {
 		const newPage = e.selected
 		searchDispatch({type: 'changePage', payload: newPage})
 		refetch()
 	}
-
-    
-  const findCribz = () => {
-    return axios.get(`http://localhost:8000/api/v1/listings/compound?location=${searchState.searchLocation}&bedrooms=${searchState.bedrooms}&page=${searchState.page}`)
-  }
-  
-  const { data, isLoading, refetch } = useQuery('find', findCribz)
 
   return (
     <div className="d-flex flex-row mb-4 px-4">

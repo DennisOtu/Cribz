@@ -484,3 +484,43 @@ body {
 
 }
 
+label, input {
+	display: block;
+}
+
+input {
+	width: 100%;
+	padding-inline: 4px;
+	border: 1px solid var(--lightGrey);
+	border-radius: 4px;
+	height: 2rem;
+}
+
+.signUpForm {
+	background: white;
+	justify-content: center;
+	padding: 2rem;
+	border: 1px solid var(--lightGrey);
+	border-radius: 0.5rem;
+	width: 30vw;
+	height: 400px;
+}
+
+.signUpForm form button {
+	margin-top: 1rem;
+}
+
+.logInForm {
+	background: white;
+	justify-self: center;
+	padding: 2rem;
+	border: 1px solid var(--lightGrey);
+	border-radius: 0.5rem;
+	width: 30vw; 
+}
+
+.logInForm form button {
+	margin-top: 1rem;
+}
+
+

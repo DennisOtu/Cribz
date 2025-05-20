@@ -6,10 +6,17 @@ import { Link } from 'react-router-dom'
 import { searchContext } from "../contexts/searchContext.js"
 import Footer from './footer.js'
 import ReactPaginate from "react-paginate"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function ExploreComponent() {
   const { searchState, searchDispatch } = useContext(searchContext)
+  
+  const exploreCribz = () => {
+    return axios.get(`http://localhost:8000/api/v1/listings?page=${searchState.page}`)
+  }
+
+  const { data, isLoading, refetch } = useQuery('exploreAll', exploreCribz)
 
 	useEffect(() =>{  
 		if (data) {
@@ -17,19 +24,13 @@ function ExploreComponent() {
 			const totalPages = Math.ceil(totalCribz / 20)
 			searchDispatch({type: 'updatePageCount', payload : totalPages})
 		}
-	},[searchState.pageCount])
-  
+	},[searchState.pageCount, searchState.page])
+
 	const changePage = (e) => {
 		const newPage = e.selected
 		searchDispatch({type: 'changePage', payload: newPage})
 		refetch()
 	}
-
-  const exploreCribz = () => {
-    return axios.get(`http://localhost:8000/api/v1/listings?page=${searchState.page}`)
-  }
-
-  const { data, isLoading, refetch } = useQuery('exploreAll', exploreCribz)
 
   return (
     <div className="d-flex flex-row mb-4 ">
@@ -56,6 +57,53 @@ function ExploreComponent() {
 		nextLinkClassName={"nextBttn"} disabledClassName={"paginationDisabled"} activeClassName={"paginationActive"}
 		renderOnZeroPageCount={null}
 		/>
+        <div style={{
+            height: '50vh', width: '100%', background: 'var(--darkBlue)',
+            color: 'white', paddingTop: '4em', paddingInline: '4em', margin: 0,
+            display: 'flex', flex: 'row', justifyContent: 'space-between', width: 'inherit'
+        }}>
+            <div className="d-flex flex-column col-lg-3">
+                <p style={{fontFamily: 'var(--fontSerif)', color: 'var(--cribzYellow)', fontSize: '14px'}}>Cribz</p>
+                <p style={{fontSize: '14px', marginTop: '2em', color: 'rgba(255, 255, 255, 0.7)'}}>Praesent tincidunt posuere dolor, nec bibendum tellus suscipit a.
+                    Nullam pellentesque felis id porttitor scelerisque.
+                </p>
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>Discover</p>
+                <div style={{marginTop: '3em', fontSize: '12px', color: 'rgba(255, 255, 255, 0.7)'}}>
+                    <p>Home</p>
+                    <p>About Us</p>
+                    <p>Services</p>
+                    <p>Contact</p>
+                </div>
+
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>About</p>
+                <div style={{marginTop: '3em', fontSize: '12px', color: 'rgba(255, 255, 255, 0.7)'}}>
+                    <p>Clients</p>
+                    <p>Teams</p>
+                    <p>Career</p>
+                </div>
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>Help</p>
+                <div style={{marginTop: '3em', fontSize: '12px', color: 'rgba(255, 255, 255, 0.7)'}}>
+                    <p>Privacy Policy</p>
+                    <p>Terms And Conditions</p>
+                    <p>Partners</p>
+                </div>
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>Follow Us</p>
+                <div style={{marginTop: '2em'}}>
+                    <FontAwesomeIcon icon={['fab', 'twitter']} />
+                    <FontAwesomeIcon icon={['fab', 'instagram']} style={{ marginInline: '1em'}}/>
+                    <FontAwesomeIcon icon={['fab', 'facebook']}  />
+                </div>
+
+            </div>
+        </div>
 		</div>
 
       {data && 
