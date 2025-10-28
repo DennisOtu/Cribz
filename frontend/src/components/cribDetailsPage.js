@@ -4,6 +4,15 @@ import axios from "axios"
 import { Map, Marker } from 'pigeon-maps'
 //import CribzNearby from "./cribzNearbyComponent"
 
+{/*                        
+    <div className="imgBoxParent">
+        <div className="imgBoxChild1"><img src={data.data[0].images.picture_url}></img></div>
+        <div className="imgBoxChild2"><img src={data.data[0].images.medium_url}></img> </div>
+        <div className="imgBoxChild3"><img src={data.data[0].images.thumbnail_url}></img></div>
+
+    </div>
+*/} 
+
 function CribDetails() {
     const { cribID } = useParams()
  
@@ -18,11 +27,28 @@ function CribDetails() {
             {isLoading && <h6 style={{ textAlign: 'center', color: 'var(--textColor)' }}>Loading...</h6>}
             {data &&
                 <div className="d-flex flex-column mx-4">
-                    <div className="imgBoxParent">
-                        <div className="imgBoxChild1"><img src={data.data[0].images.picture_url}></img></div>
-                        <div className="imgBoxChild2"><img src={data.data[0].images.medium_url}></img> </div>
-                        <div className="imgBoxChild3"><img src={data.data[0].images.thumbnail_url}></img></div>
+                    <div className="d-flex flex-row">
+                        <div className="detailsImgBox">
+                            <img src={data.data[0].images.picture_url}></img>
+                       
+                        </div>
+
+                        <div className="showInterestDiv">
+                            <h6 style={{fontFamily: 'var(--fontSerif)', textAlign: 'center', color: 'var(--textColor)'}}>Show Interest</h6>
+                            <form className="d-flex flex-column">
+                                <input placeholder="Phone" onChange={''} name="Phone"/>
+                                <input placeholder="Email" onChange={''} name="Email"/>
+                                <textarea
+                                    value={`I am interested in "${data.data[0].name}" in ${data.data[0].address.street.split(',').slice(0, 1)}`}
+                                    onChange={''}
+                                />
+                                <button className="butn mt-2" onClick={''}>Submit</button>
+                            </form>
+                        </div>                        
                     </div>
+
+                    
+
                     <div className="d-flex flex-row">
                         <div className="d-flex flex-column col-lg-8">
                             <div className="detInfo">
@@ -38,18 +64,7 @@ function CribDetails() {
                             </div>
                            
                         </div>
-                        <div className="showInterestDiv">
-                            <h6 style={{fontFamily: 'var(--fontSerif)', textAlign: 'center', color: 'var(--textColor)'}}>Show Interest</h6>
-                            <form className="d-flex flex-column">
-                                <input placeholder="Phone" onChange={''} name="Phone"/>
-                                <input placeholder="Email" onChange={''} name="Email"/>
-                                <textarea
-                                    value={`I am interested in "${data.data[0].name}" in ${data.data[0].address.street.split(',').slice(0, 1)}`}
-                                    onChange={''}
-                                />
-                                <button className="butn mt-2" onClick={''}>Submit</button>
-                            </form>
-                        </div>
+
 
                     </div>
 
@@ -84,7 +99,7 @@ function CribDetails() {
             }
 
             {data && 
-                <h6 style={{ textAlign: 'center'}}>CRIBZ NEARBY</h6>
+                <h6 style={{ textAlign: 'center'}}></h6>
             
                 //<div>
                   //  <h5 style={{textAlign: 'center', fontFamily: 'var(--fontSerif)', color: 'var(--textColor)', marginBlock: '2em'}}>Cribz Nearby</h5>

@@ -30,18 +30,20 @@ function LoginPage () {
 	}
 
 	return (
-		<>
-		<form onSubmit={ handleSubmit } className='mt-5'>
-			<h2>Login</h2>
-			<label for="email">Email</label>
-			<input type="text" name="email" ref={mailRef} required />
-			<div className="email error"></div>
-			<label for="password">Password</label>
-			<input type="password" name="password" ref={passRef} required />
-			<div className="password error"></div>
-			<button type="submit">login</button>
-		</form>
-		</>
+	<div style={{ backgroundColor: 'var(--lightGrey)', height: '100vh', padding: '8rem', alignContent: 'center' }}>
+		<div className='logInForm'>
+			<form onSubmit={ handleSubmit }>
+				<h2 style={{ color: 'var(--cribzBlue)' }}>Log In</h2>
+				<label for="email">Email</label>
+				<input type="text" name="email" ref={mailRef} required />
+				<div className="email error"></div>
+				<label for="password">Password</label>
+				<input type="password" name="password" ref={passRef} required />
+				<div className="password error"></div>
+				<button className='butn' type="submit">Log In</button>
+			</form>
+		</div>
+	</div>
 	)
 }
 

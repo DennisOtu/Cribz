@@ -33,29 +33,31 @@ function SignupPage() {
 	}
 
 	return (
-		<>
-		<form onSubmit={ handleSubmit } className='mt-5'>
-			<h2>Sign up</h2>
-			
-			<label for="firstName">First Name</label>
-			<input type="text" name="firstName" ref={firstNameRef} required />
-			<div className="firstName error"></div>
-			
-			<label for="lastName">Last Name</label>
-			<input type="text" name="lastName" ref={lastNameRef} required />
-			<div className="lastName error"></div>
-			
-			<label for="email">Email</label>
-			<input type="text" name="email" ref={mailRef} required />
-			<div className="email error"></div>
-			
-			<label for="password">Password</label>
-			<input type="password" name="password" ref={passRef} required />
-			<div className="password error"></div>
-			
-			<button type="submit">Sign up</button>
-		</form>
-		</>
+	<div style={{ backgroundColor: 'var(--lightGrey)', height: '100vh', padding: '8rem', display: 'flex', justifyContent: 'center' }}>
+		<div className='signUpForm'>
+			<form onSubmit={ handleSubmit }>
+				<h2 style={{ color: 'var(--cribzBlue)' }}>Sign Up</h2>
+				
+				<label for="firstName">First Name</label>
+				<input type="text" name="firstName" ref={firstNameRef} required />
+				<div className="firstName error"></div>
+				
+				<label for="lastName">Last Name</label>
+				<input type="text" name="lastName" ref={lastNameRef} required />
+				<div className="lastName error"></div>
+				
+				<label for="email">Email</label>
+				<input type="text" name="email" ref={mailRef} required />
+				<div className="email error"></div>
+				
+				<label for="password">Password</label>
+				<input type="password" name="password" ref={passRef} required />
+				<div className="password error"></div>
+				
+				<button className='butn' type="submit">Sign Up</button>
+			</form>
+		</div>
+	</div>
 	)
 }
 

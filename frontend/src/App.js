@@ -41,7 +41,6 @@ function App() {
 						<Route path='/signup' element={<SignupPage/>}/>
 						<Route path= '/login' element={<LoginPage/>}/>
 					</Routes>
-					<Footer/>
 				</searchContext.Provider>
 			</div>
 			<ReactQueryDevtools initialIsOpen={false}/>

@@ -1,45 +1,110 @@
 import { Map, Marker } from 'pigeon-maps'
 import axios from 'axios'
 import { useQuery } from 'react-query'
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { searchContext } from "../contexts/searchContext.js"
+import Footer from './footer.js'
+import ReactPaginate from "react-paginate"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 function ExploreComponent() {
   const { searchState, searchDispatch } = useContext(searchContext)
-
-  useEffect(() => refetch(), [searchState.page])
-
+  
   const exploreCribz = () => {
     return axios.get(`http://localhost:8000/api/v1/listings?page=${searchState.page}`)
   }
-  
+
   const { data, isLoading, refetch } = useQuery('exploreAll', exploreCribz)
-  
-  if (data) {
-    const totalCribz = data.data[0].metadata[0].total
-    //paginateData(totalCribz)
-  }
+
+	useEffect(() =>{  
+		if (data) {
+			const totalCribz = data.data[0].metadata[0].total
+			const totalPages = Math.ceil(totalCribz / 20)
+			searchDispatch({type: 'updatePageCount', payload : totalPages})
+		}
+	},[searchState.pageCount, searchState.page])
+
+	const changePage = (e) => {
+		const newPage = e.selected
+		searchDispatch({type: 'changePage', payload: newPage})
+		refetch()
+	}
 
   return (
-    <div className="d-flex flex-row mb-4">
-      <div className="col-lg-8 d-flex flex-column">
+    <div className="d-flex flex-row mb-4 ">
+		<div className="col-lg-8 d-flex flex-column">
+			<div className="row" style={{ paddingTop: '50px', marginLeft: '8px' }}>
+			  {isLoading && <h6 style={{ color: 'var(--textColor)' }}>Loading...</h6>}
+			  {data && data.data[0].data.map(crib =>
+				<div className="searchCard">
+				  <Link style={{ textDecoration: 'none', color: 'inherit', borderRadius: 'inherit' }} to={`${crib._id}`}>
+					<img src={crib.images.picture_url}></img>
+					<div className="container d-flex flex-column m-0 p-1">
+					  <ul style={{ listStyleType: 'none', padding: 0, overflow: 'hidden' }}>
+						<li style={{ fontWeight: 'bold', fontSize: '14px' }}>${crib.price.$numberDecimal}</li>
+						<li style={{ fontSize: '12px' }}>{crib.bedrooms}bds | {parseInt(crib.bathrooms.$numberDecimal)}ba | {crib.property_type}</li>
+						<li style={{ fontSize: '12px', fontWeight: '300' }}>{crib.address.street.split(',', 1)}, {crib.address.country}</li>
+					  </ul>
+					</div>
+				  </Link> 
+				</div>              
+			  )}
+			</div>
+			<ReactPaginate  breakLabel={'...'} previousLabel={"prev"} nextLabel={"next"} pageCount={searchState.pageCount}
+			onPageChange={changePage} pageRangeDisplayed={3} containerClassName={"paginationDiv"} previousLinkClassName={"previousBttn"}
+			nextLinkClassName={"nextBttn"} disabledClassName={"paginationDisabled"} activeClassName={"paginationActive"}
+			renderOnZeroPageCount={null}
+			/>
 
-        <div className="row" style={{ paddingTop: '125px' }}>
-          {isLoading && <h6 style={{ color: 'var(--textColor)' }}>Loading...</h6>}
-          {data && data.data[0].data.map(crib =>
-            <div className="searchCard m-2">
-              <Link style={{ textDecoration: 'none', color: 'inherit', borderRadius: 'inherit' }} to={`${crib._id}`}>
-                <img src={crib.images.picture_url}></img>
-                <div className="container px-1 pt-2 d-flex flex-row">
-                  <p>{crib.address.street.split(',', 1)}</p>
-                  <p style={{ fontSize: '12px', marginLeft: '2em'}}>Beds: {crib.bedrooms} Baths: {parseInt(crib.bathrooms.$numberDecimal)}</p>
-                </div>  
-              </Link> 
-            </div>              
-          )}
+        <div style={{
+            height: '50vh', width: '100%', color: 'var(--darkBlue)', paddingTop: '4em', paddingInline: '4em', margin: 0,
+            display: 'flex', flex: 'row', justifyContent: 'space-between', width: 'inherit'
+        }}>
+            <div className="d-flex flex-column col-lg-3">
+                <p style={{fontFamily: 'var(--fontSerif)', fontSize: '14px'}}>Cribz</p>
+                <p style={{fontSize: '14px', marginTop: '2em'}}>Praesent tincidunt posuere dolor, nec bibendum tellus suscipit a.
+                    Nullam pellentesque.
+                </p>
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>Discover</p>
+                <div style={{marginTop: '3em', fontSize: '12px'}}>
+                    <p>Home</p>
+                    <p>About Us</p>
+                    <p>Services</p>
+                    <p>Contact</p>
+                </div>
+
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>About</p>
+                <div style={{marginTop: '3em', fontSize: '12px'}}>
+                    <p>Clients</p>
+                    <p>Teams</p>
+                    <p>Career</p>
+                </div>
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>Help</p>
+                <div style={{marginTop: '3em', fontSize: '12px'}}>
+                    <p>Privacy Policy</p>
+                    <p>Terms And Conditions</p>
+                    <p>Partners</p>
+                </div>
+            </div>
+            <div>
+                <p style={{ fontFamily: 'var(--fontSerif)', fontSize: '14px' }}>Follow Us</p>
+                <div style={{marginTop: '2em'}}>
+                    <FontAwesomeIcon icon={['fab', 'twitter']} />
+                    <FontAwesomeIcon icon={['fab', 'instagram']} style={{ marginInline: '1em'}}/>
+                    <FontAwesomeIcon icon={['fab', 'facebook']}  />
+                </div>
+
+            </div>
         </div>
-      </div>
+		</div>
 
       {data && 
         <div className='mapDiv'>
@@ -52,7 +117,6 @@ function ExploreComponent() {
         </div>
       }
     </div> 
-  
   ) 
 }
 

@@ -7,6 +7,7 @@ import axios from 'axios'
 import troubleFinding from '../images/troubleFinding.png'
 import { Link } from 'react-router-dom'
 import { searchContext } from "../contexts/searchContext.js"
+import Footer from './footer.js'
 
 function HomePage() {
   const { searchState }  = useContext(searchContext)
@@ -62,7 +63,7 @@ function HomePage() {
                   <p style={{ fontFamily: 'var(--fontSans)', fontWeight: '300', color: 'var(--cribzYellow)', fontSize: '58px'}}>Trouble finding what you want?</p>
                   <p style={{ fontFamily: 'var(--fontSerif)', fontWeight: '300', color: 'var(--textColor)', fontSize: '24px'}}>Visit our search page to explore more listings</p>
                   <Link to="listings/compound">
-                    <button className="butnOutLine" style={{ width: '250px', marginTop: '2em' }}>More Cribz</button>
+                    <button className="butn" style={{ width: '250px', marginTop: '2em' }}>More Cribz</button>
                   </Link>
                 </div>
                 <div className="d-flex" style={{alignItems: 'center'}}><img src={troubleFinding} style={{ width: '100%',  marginBottom: '15%'}}/></div>
@@ -124,7 +125,8 @@ function HomePage() {
             </div>
           }
         </div>
-       
+   	  <Footer />
+
       </div>
     )
   }
