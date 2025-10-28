@@ -13,7 +13,7 @@ function LocationSearchBar() {
           name="location"
         />
       </form>
-      <button className='searchButn' type='button'  onClick={()=>searchDispatch({type: 'findLocation'})}><img src={ searchIcon } className='searchIcon'/></button>
+      <button className='searchButn' type='button' onClick={()=>searchDispatch({type: 'findLocation'})}><img src={ searchIcon } className='searchIcon'/></button>
     </div>
   )
 }

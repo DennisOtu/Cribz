@@ -337,11 +337,24 @@ body {
   border-radius: 20px;
 }
 
+.detailsImgBox {
+  height: 300px;
+  width: 70vw;
+  margin-top: 1em;
+  margin-left: 8em;
+  border-radius: 8px 0px 0px 8px;
+  overflow: hidden;
+}
+
+.detailsImgBox img {
+  width: 100%;
+}
+
 .imgBoxParent {
   height: 300px;
   border-radius: 10px;
   margin-top: 1em;
-  margin-inline: 6em;
+  margin-left: 6em;
   display: grid;
   grid-template-columns: repeat(8, 1fr); 
   grid-template-rows: 1fr 1fr;
@@ -399,12 +412,13 @@ body {
 }
 
 .showInterestDiv {
-  margin: 1em;
+  height: 300px;
+  width: 20vw;
+  margin-top: 1em;
   margin-right: 8em;
   padding: 1em;
   border: solid var(--lightGrey) 1px;
-  border-radius: 8px;
-  width: 100%;
+  border-radius: 0px 8px 8px 0px;
 }
 
 .showInterestDiv form input{
@@ -429,10 +443,11 @@ body {
 }
 
 .detMap {
-  margin-left: 8.5em;
+  margin-left: 9em;
   margin-right: 1em;
   margin-bottom: 1em;
-  height: 250px;
+  height: 300px;
+  width: 100%;
   padding: 4px;
   border: 1px solid var(--lightGrey);
   border-radius: 18px;
@@ -457,8 +472,6 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
-
-
 
 .reviewsDiv div {
   height: 60vh;

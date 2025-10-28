@@ -59,6 +59,84 @@ export default class ListingsDAO {
     }
   }
 
+  static async compound(limit, location, beds, pageNum) {
+    if (location && beds) {
+      console.log(`Query.location: ${location}, Query.beds : ${beds} (DAO)`)
+      try {
+        const page = pageNum - 1
+        const allListings = await listings.aggregate(
+          [
+            {
+              $search: {
+                index: 'location',
+                text: {
+                  query: location,
+                  path: {
+                    'wildcard': '*'
+                  }
+                }
+              }
+            },
+            { $match: { "bedrooms": beds } },
+            {
+              $facet: {
+                metadata: [{ $count: 'total' }],
+                data: [{ $skip: limit * page }, { $limit: limit }]
+              }
+            }
+          ]
+        )
+        const startIndex = (limit * page)
+        const endIndex = (limit * page) + limit
+        const list = await allListings.toArray()
+        const total = list[0].metadata[0].total
+
+        console.log(`Data retrieved (compound), total: ${total} items`)
+        console.log(`${limit} items per page, ${list[0].data.length} items displayed`)
+        console.log(`${Math.ceil(total / limit)} pages`)
+        console.log(`pageRequested: page ${pageNum}`)
+        console.log(`startIndex = ${startIndex}, endIndex = ${endIndex}`)
+
+        if (startIndex > 0) {
+          console.log('prevPage: true')
+        } else {
+          console.log('prevPage: false')          
+        }
+
+        if (endIndex < list[0].metadata[0].total) {
+          console.log('nextPage: true')
+        } else {
+          console.log('nextPage: false')
+        }
+
+        return list
+      } catch (e) {
+        console.error(`Cannot find Cribz, ${e}`);
+      }
+    } else {
+      console.log('no query entered')
+    }
+  }
+  
+  static async getCrib(cribID) {
+    if (cribID) {
+      console.log(`cribID : ${cribID} (dao)`)
+      try {
+        const item = await listings.aggregate([
+          { $match: { "_id": cribID } }
+        ])
+        const crib = item.toArray()
+        console.log('data retrieved (getCribs)')
+        return crib  
+      } catch (e) {
+        console.error(`Unable to get crib, ${e}`);
+      }
+    } else {
+      console.log('no cribID entered')
+    }
+  }
+
+
   static async getLocation(limit, location, pageNum) {
     if (location) {
       console.log(`Query.location : ${location} (getLoc dao)`)
@@ -147,82 +225,6 @@ export default class ListingsDAO {
     }
   }*/
 
-  static async compound(limit, location, beds, pageNum) {
-    if (location && beds) {
-      console.log(`Query.location: ${location}, Query.beds : ${beds}`)
-      try {
-        const page = pageNum - 1
-        const allListings = await listings.aggregate(
-          [
-            {
-              $search: {
-                index: 'location',
-                text: {
-                  query: location,
-                  path: {
-                    'wildcard': '*'
-                  }
-                }
-              }
-            },
-            { $match: { "bedrooms": beds } },
-            {
-              $facet: {
-                metadata: [{ $count: 'total' }],
-                data: [{ $skip: limit * page }, { $limit: limit }]
-              }
-            }
-          ]
-        )
-        const startIndex = (limit * page)
-        const endIndex = (limit * page) + limit
-        const list = await allListings.toArray()
-        const total = list[0].metadata[0].total
-
-        console.log(`Data retrieved (compound), total: ${total} items`)
-        console.log(`${limit} items per page, ${list[0].data.length} items displayed`)
-        console.log(`${Math.ceil(total / limit)} pages`)
-        console.log(`pageRequested: page ${pageNum}`)
-        console.log(`startIndex = ${startIndex}, endIndex = ${endIndex}`)
-
-        if (startIndex > 0) {
-          console.log('prevPage: true')
-        } else {
-          console.log('prevPage: false')          
-        }
-
-        if (endIndex < list[0].metadata[0].total) {
-          console.log('nextPage: true')
-        } else {
-          console.log('nextPage: false')
-        }
-
-        return list
-      } catch (e) {
-        console.error(`Cannot find Cribz, ${e}`);
-      }
-    } else {
-      console.log('no query entered')
-    }
-  }
-  
-  static async getCrib(cribID) {
-    if (cribID) {
-      console.log(`cribID : ${cribID} (dao)`)
-      try {
-        const item = await listings.aggregate([
-          { $match: { "_id": cribID } }
-        ])
-        const crib = item.toArray()
-        console.log('data retrieved (getCribs)')
-        return crib  
-      } catch (e) {
-        console.error(`Unable to get crib, ${e}`);
-      }
-    } else {
-      console.log('no cribID entered')
-    }
-  }
 
   static async getBeds(limit, beds, pageNum) {
     if (beds) {
