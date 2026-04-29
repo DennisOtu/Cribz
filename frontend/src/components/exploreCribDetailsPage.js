@@ -44,8 +44,8 @@ function ExploreCribDetails() {
                         <div className="d-flex flex-column col-lg-8">
                             <div className="detInfo">
                                 <h4 style={{fontFamily: 'var(--fontSerif)'}}>{data.data[0].name}</h4>
-                                <h4 style={{ color: 'var(--cribzYellow)' }}>${data.data[0].price.$numberDecimal}</h4>
-                                <h6 style={{color: 'var(--textColor)'}}>{data.data[0].bedrooms} Bed(s), {parseInt(data.data[0].bathrooms.$numberDecimal)} Bath(s)</h6>
+                                <h3 style={{ color: 'red', fontWeight: 'bold' }}>${data.data[0].price.$numberDecimal}</h3>
+                                <h6 style={{color: 'var(--textColor)'}}>{data.data[0].bedrooms} Bed {parseInt(data.data[0].bathrooms.$numberDecimal)} Bath</h6>
                                 <p style={{ color: 'var(--textColor)'}}>{data.data[0].address.street.split(',').slice(0, 1)}, {data.data[0].address.street.split(',').slice(2, 3)}</p>
                             </div>
                             <div className="detMap">
@@ -60,7 +60,7 @@ function ExploreCribDetails() {
                     </div>
 
                     {data.data[0].description && 
-                        <div style={{ marginInline: '8em'}}>
+                        <div style={{ marginInline: '9em'}}>
                             <h4 style={{ fontFamily: 'var(--fontSerif)'}}>Description</h4>
                             <p className="mt-3" style={{fontSize: '16px', color: 'var(--textColor)' }}>{data.data[0].description}</p>
                         </div>
@@ -74,9 +74,9 @@ function ExploreCribDetails() {
                     {data.data[0].reviews[0] &&
                         <div>
                             <h5 style={{textAlign:'center', fontFamily: 'var(--fontSerif)', color: 'var(--textColor)'}}>Reviews</h5>
-                            <div className="reviewsDiv">{data.data[0].reviews.map((item, index) => index <6 &&
+                            <div className="reviewsDiv">{data.data[0].reviews.map((item, index) => index < 6 &&
                                     <div>
-                                    <h6>{item.reviewer_name}</h6>
+                                        <h6>{item.reviewer_name}</h6>
                                         <p style={{fontSize: '12px', color: 'var(--textColor)', fontFamily: 'var(--fontSerif)'}}>{item.date.split('-').slice(1,2)}-{item.date.split('-').slice(0,1)}</p>
                                         <p style={{ color: 'var(--textColor)', fontSize: '14px'}}>{item.comments}</p>
                                     </div>

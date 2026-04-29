@@ -41,7 +41,7 @@ function LocNBedsComponent() {
 					<img src={crib.images.picture_url}></img>
 					<div className="container d-flex flex-column m-0 p-1">
 					  <ul style={{ listStyleType: 'none', padding: 0, overflow: 'hidden' }}>
-						<li style={{ fontWeight: 'bold', fontSize: '14px' }}>${crib.price.$numberDecimal}</li>
+						<li style={{ fontWeight: 'bold', fontSize: '14px', color: 'red' }}>${crib.price.$numberDecimal}</li>
 						<li style={{ fontSize: '12px' }}>{crib.bedrooms}bds | {parseInt(crib.bathrooms.$numberDecimal)}ba | {crib.property_type}</li>
 						<li style={{ fontSize: '12px', fontWeight: '300' }}>{crib.address.street.split(',', 1)}, {crib.address.country}</li>
 					  </ul>

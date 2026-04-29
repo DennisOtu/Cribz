@@ -49,8 +49,8 @@ function HomePage() {
                       textDecoration: 'none'
                     }} to={`listings/${crib._id}`} >
                     <p style={{
-                      background: 'var(--textColor)', color: 'white', fontSize: '16px',
-                      letterSpacing: 'var(--letterSpaceMd)', fontWeight: '200',
+                      background: 'var(--transparentBlack)', color: 'white', fontSize: '16px',
+                      fontWeight: '200',
                       textTransform: 'lowercase', padding: '6px'
                     }}>{crib.name}</p>
                     
